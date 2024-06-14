@@ -9,8 +9,7 @@ on:
     tags:
       - "v*"
     branches:
-      - master
-      - next
+      - main
 
 jobs:
   build:

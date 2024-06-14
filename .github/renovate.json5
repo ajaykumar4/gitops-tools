@@ -140,17 +140,6 @@
         "ARG [A-Z0-9_]+_VERSION=(?<currentValue>.*) # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
       ],
       "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "description": ["Process custom dependencies"],
-      "fileMatch": ["(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"],
-      "matchStrings": [
-        // ARG KUSTOMIZE_VERSION=5.1.1 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
-        "ARG [A-Z0-9_]+_VERSION=(?<currentValue>.*) # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) extractVersion=(?<extractVersion>\\S+)"
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}",
-      "extractVersionTemplate": "^{{#if extractVersion}}{{{extractVersion}}}{{/if}}(?<version>\\S+)"
     }
   ]
 }

@@ -78,11 +78,13 @@ RUN groupadd -g $ARGOCD_USER_ID argocd && \
 # binary versions
 ARG AGE_VERSION=v1.1.1 # renovate: datasource=github-tags depName=FiloSottile/age
 ARG JQ_VERSION=1.7.1 # renovate: datasource=github-tags depName=jqlang/jq
+ARG HELM2_VERSION=v2.17.0
 ARG HELM3_VERSION=v3.14.4 # renovate: datasource=github-tags depName=helm/helm
 ARG HELMFILE_VERSION=0.163.1 # renovate: datasource=github-tags depName=helmfile/helmfile
 ARG KUSTOMIZE_VERSION=5.1.1 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG SOPS_VERSION=v3.8.1 # renovate: datasource=github-tags depName=mozilla/sops
 ARG YQ_VERSION=v4.44.1 # renovate: datasource=github-tags depName=mikefarah/yq
+ARG VALS_VERSION=0.37.2 # renovate: datasource=github-tags depName=helmfile/vals
 
 # relevant for kubectl if installed
 ARG KUBESEAL_VERSION=0.26.3 # renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
@@ -96,6 +98,7 @@ RUN \
     wget -qO "/usr/local/bin/sops"     "https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux.${GO_ARCH}" && \
     wget -qO-                          "https://github.com/FiloSottile/age/releases/download/${AGE_VERSION}/age-${AGE_VERSION}-linux-${GO_ARCH}.tar.gz" | tar zxv --strip-components=1 -C /usr/local/bin age/age age/age-keygen && \
     wget -qO-                          "https://github.com/helmfile/helmfile/releases/download/v${HELMFILE_VERSION}/helmfile_${HELMFILE_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /usr/local/bin helmfile && \
+    wget -qO-                          "https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /usr/local/bin vals && \
     wget -qO "/usr/local/bin/yq"       "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${GO_ARCH}" && \
     wget -qO "/usr/local/bin/jq"       "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-${GO_ARCH}" && \
     wget -qO "/usr/local/bin/kubectl"  "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${GO_ARCH}/kubectl" && \
