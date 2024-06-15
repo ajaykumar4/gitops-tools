@@ -96,7 +96,7 @@ ARG VALS_VERSION=0.37.2
 
 # relevant for kubectl if installed
 # renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
-ARG KUBESEAL_VERSION=0.26.
+ARG KUBESEAL_VERSION=0.26.2
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-tags depName=kubernetes-sigs/krew
@@ -145,10 +145,10 @@ ENV PATH="${KREW_ROOT}/bin:$PATH"
 
 # plugin versions
  # renovate: datasource=github-tags depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.9.
- # renovate: datasource=github-tags depName=aslafy-z/helm-git
-ARG HELM_GIT_VERSION=v0.16.
- # renovate: datasource=github-tags depName=jkroepke/helm-secrets
+ARG HELM_DIFF_VERSION=v3.9.7
+# renovate: datasource=github-tags depName=aslafy-z/helm-git
+ARG HELM_GIT_VERSION=v0.16.0
+# renovate: datasource=github-tags depName=jkroepke/helm-secrets
 ARG HELM_SECRETS_VERSION=v4.5.0
 
 RUN \
