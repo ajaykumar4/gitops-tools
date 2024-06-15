@@ -6,7 +6,12 @@
     ":disableRateLimiting",
     ":dependencyDashboard",
     ":semanticCommits",
-    ":automergeBranch"
+    ":automergeBranch",
+    "config:best-practices",
+    ":prConcurrentLimitNone",
+    ":prHourlyLimitNone",
+    ":rebaseStalePrs",
+    "regexManagers:dockerfileVersions",
   ],
   "dependencyDashboard": true,
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
