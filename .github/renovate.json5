@@ -133,18 +133,5 @@
       "packageNames": ["kubernetes-sigs/kustomize"],
       "extractVersion": "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$",
     }
-  ],
-  // custom managers
-  "customManagers": [
-    {
-      "customType": "regex",
-      "description": ["Process custom dependencies"],
-      "fileMatch": ["(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"],
-      "matchStrings": [
-        // ARG AGE_VERSION=v1.1.1 # renovate: datasource=github-tags depName=FiloSottile/age
-        "ARG [A-Z0-9_]+_VERSION=(?<currentValue>.*) # renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)"
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
-    }
   ]
 }

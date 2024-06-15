@@ -76,20 +76,31 @@ RUN groupadd -g $ARGOCD_USER_ID argocd && \
 #    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # binary versions
-ARG AGE_VERSION=v1.1.1 # renovate: datasource=github-tags depName=FiloSottile/age
-ARG JQ_VERSION=1.7.1 # renovate: datasource=github-tags depName=jqlang/jq
+# renovate: datasource=github-tags depName=FiloSottile/age
+ARG AGE_VERSION=v1.1.1
+# renovate: datasource=github-tags depName=jqlang/jq
+ARG JQ_VERSION=1.7.1
 ARG HELM2_VERSION=v2.17.0
-ARG HELM3_VERSION=v3.14.4 # renovate: datasource=github-tags depName=helm/helm
-ARG HELMFILE_VERSION=0.163.1 # renovate: datasource=github-tags depName=helmfile/helmfile
-ARG KUSTOMIZE_VERSION=5.1.1 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
-ARG SOPS_VERSION=v3.8.1 # renovate: datasource=github-tags depName=mozilla/sops
-ARG YQ_VERSION=v4.44.1 # renovate: datasource=github-tags depName=mikefarah/yq
-ARG VALS_VERSION=0.37.2 # renovate: datasource=github-tags depName=helmfile/vals
+# renovate: datasource=github-tags depName=helm/helm
+ARG HELM3_VERSION=v3.14.4
+# renovate: datasource=github-tags depName=helmfile/helmfile
+ARG HELMFILE_VERSION=0.163.1
+# renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
+ARG KUSTOMIZE_VERSION=5.1.1
+# renovate: datasource=github-tags depName=mozilla/sops
+ARG SOPS_VERSION=v3.8.1
+# renovate: datasource=github-tags depName=mikefarah/yq
+ARG YQ_VERSION=v4.44.1
+# renovate: datasource=github-tags depName=helmfile/vals
+ARG VALS_VERSION=0.37.2
 
 # relevant for kubectl if installed
-ARG KUBESEAL_VERSION=0.26.3 # renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
-ARG KUBECTL_VERSION=v1.30.2 # renovate: datasource=github-tags depName=kubernetes/kubectl
-ARG KREW_VERSION=v0.4.4 # renovate: datasource=github-tags depName=kubernetes-sigs/krew
+# renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
+ARG KUBESEAL_VERSION=0.26.
+# renovate: datasource=github-tags depName=kubernetes/kubectl
+ARG KUBECTL_VERSION=v1.30.2
+# renovate: datasource=github-tags depName=kubernetes-sigs/krew
+ARG KREW_VERSION=v0.4.4
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
@@ -133,9 +144,12 @@ ENV KREW_ROOT=/home/argocd/krew
 ENV PATH="${KREW_ROOT}/bin:$PATH"
 
 # plugin versions
-ARG HELM_DIFF_VERSION=v3.9.7 # renovate: datasource=github-tags depName=databus23/helm-diff
-ARG HELM_GIT_VERSION=v0.16.0 # renovate: datasource=github-tags depName=aslafy-z/helm-git
-ARG HELM_SECRETS_VERSION=v4.5.0 # renovate: datasource=github-tags depName=jkroepke/helm-secrets
+ # renovate: datasource=github-tags depName=databus23/helm-diff
+ARG HELM_DIFF_VERSION=v3.9.
+ # renovate: datasource=github-tags depName=aslafy-z/helm-git
+ARG HELM_GIT_VERSION=v0.16.
+ # renovate: datasource=github-tags depName=jkroepke/helm-secrets
+ARG HELM_SECRETS_VERSION=v4.5.0
 
 RUN \
   helm-v3 plugin install https://github.com/databus23/helm-diff   --version ${HELM_DIFF_VERSION} && \
