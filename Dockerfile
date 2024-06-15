@@ -84,7 +84,7 @@ ARG HELM2_VERSION=v2.17.0
 # renovate: datasource=github-tags depName=helm/helm
 ARG HELM3_VERSION=v3.15.2
 # renovate: datasource=github-tags depName=helmfile/helmfile
-ARG HELMFILE_VERSION=0.163.1
+ARG HELMFILE_VERSION=0.165.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.4.2
 # renovate: datasource=github-tags depName=mozilla/sops
