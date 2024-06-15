@@ -128,10 +128,6 @@
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "extends": [":automergeMinor"]
-    },
-    {
-      "packageNames": ["kubernetes-sigs/kustomize"],
-      "extractVersion": "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$",
     }
   ]
 }
