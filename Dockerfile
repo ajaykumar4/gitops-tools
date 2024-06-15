@@ -149,7 +149,7 @@ ARG HELM_DIFF_VERSION=v3.9.7
 # renovate: datasource=github-tags depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v0.16.0
 # renovate: datasource=github-tags depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v4.5.0
+ARG HELM_SECRETS_VERSION=v4.6.0
 
 RUN \
   helm-v3 plugin install https://github.com/databus23/helm-diff   --version ${HELM_DIFF_VERSION} && \
