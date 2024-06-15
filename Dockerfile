@@ -82,7 +82,7 @@ ARG AGE_VERSION=v1.1.1
 ARG JQ_VERSION=1.7.1
 ARG HELM2_VERSION=v2.17.0
 # renovate: datasource=github-tags depName=helm/helm
-ARG HELM3_VERSION=v3.14.4
+ARG HELM3_VERSION=v3.15.2
 # renovate: datasource=github-tags depName=helmfile/helmfile
 ARG HELMFILE_VERSION=0.163.1
 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
