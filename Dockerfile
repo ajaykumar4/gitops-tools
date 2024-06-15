@@ -96,7 +96,7 @@ ARG VALS_VERSION=0.37.2
 
 # relevant for kubectl if installed
 # renovate: datasource=github-tags depName=bitnami-labs/sealed-secrets
-ARG KUBESEAL_VERSION=0.26.2
+ARG KUBESEAL_VERSION=0.26.3
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-tags depName=kubernetes-sigs/krew
