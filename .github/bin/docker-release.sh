@@ -4,11 +4,11 @@ echo "$DOCKER_PASSWORD" | docker login         -u "$DOCKER_USERNAME" --password-
 echo "$GHCR_PASSWORD"   | docker login ghcr.io -u "$GHCR_USERNAME"   --password-stdin
 
 export DOCKER_ORG="ajaykumar4"
-export DOCKER_PROJECT="argocd-helmfile"
+export DOCKER_PROJECT="argocd-plugins"
 export DOCKER_REPO="${DOCKER_ORG}/${DOCKER_PROJECT}"
 
 export GHCR_ORG="ajaykumar4"
-export GHCR_PROJECT="argocd-helmfile"
+export GHCR_PROJECT="argocd-plugins"
 export GHCR_REPO="ghcr.io/${GHCR_ORG}/${GHCR_PROJECT}"
 
 if [[ $GITHUB_REF == refs/tags/* ]]; then
