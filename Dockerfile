@@ -16,7 +16,7 @@ ARG AGE_VERSION=v1.2.0
 # renovate: datasource=github-tags depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-tags depName=helm/helm
-ARG HELM3_VERSION=v3.15.3
+ARG HELM_VERSION=v3.15.3
 # renovate: datasource=github-tags depName=helmfile/helmfile
 ARG HELMFILE_VERSION=0.166.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
@@ -31,12 +31,12 @@ ARG CURL_VERSION=v8.7.1
 ARG KUBECTL_VERSION=v1.30.2
   
 # plugin versions
- # renovate: datasource=github-tags depName=databus23/helm-diff
- ARG HELM_DIFF_VERSION=v3.9.7
- # renovate: datasource=github-tags depName=aslafy-z/helm-git
- ARG HELM_GIT_VERSION=v0.16.0
- # renovate: datasource=github-tags depName=jkroepke/helm-secrets
- ARG HELM_SECRETS_VERSION=v4.6.0
+# renovate: datasource=github-tags depName=databus23/helm-diff
+ARG HELM_DIFF_VERSION=v3.9.7
+# renovate: datasource=github-tags depName=aslafy-z/helm-git
+ARG HELM_GIT_VERSION=v0.16.0
+# renovate: datasource=github-tags depName=jkroepke/helm-secrets
+ARG HELM_SECRETS_VERSION=v4.6.0
 
 RUN mkdir -p custom-tools/helm-plugins
 WORKDIR /custom-tools
