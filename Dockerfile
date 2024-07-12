@@ -30,7 +30,7 @@ ARG CURL_VERSION=v8.7.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
   
-RUN mkdir -p custom-tools/helm-plugins
+RUN mkdir -p /custom-tools/helm-plugins
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
