@@ -30,7 +30,6 @@ ARG CURL_VERSION=v8.7.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
   
-
 RUN mkdir -p custom-tools/helm-plugins
 
 RUN \
