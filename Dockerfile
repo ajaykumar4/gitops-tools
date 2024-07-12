@@ -12,7 +12,7 @@ RUN echo "I am running on final $BUILDPLATFORM, building for $TARGETPLATFORM"
   
 # binary versions
 # renovate: datasource=github-tags depName=FiloSottile/age
-ARG AGE_VERSION=v1.1.1
+ARG AGE_VERSION=v1.2.0
 # renovate: datasource=github-tags depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-tags depName=helm/helm
