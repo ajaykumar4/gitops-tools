@@ -49,7 +49,6 @@ RUN \
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/') && \
     wget -qO "/custom-tools/curl"      "https://github.com/moparisthebest/static-curl/releases/download/${CURL_VERSION}/curl-${GO_ARCH}" && \
-    wget -qO-                          "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /custom-tools kustomize && \
     true
 
 # plugin versions
