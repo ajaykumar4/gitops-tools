@@ -39,6 +39,7 @@ RUN \
     GO_ARCH=$(echo ${ARCH} | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
     echo ${ARCH} && \
     echo ${GO_ARCH} && \
+    echo "https://github.com/moparisthebest/static-curl/releases/download/${CURL_VERSION}/curl-${ARCH}" && \
     wget -qO-                          "https://get.helm.sh/helm-${HELM_VERSION}-linux-${GO_ARCH}.tar.gz" | tar zxv --strip-components=1 -C /tmp linux-${GO_ARCH}/helm && mv /tmp/helm /custom-tools/helm && \
     wget -qO "/custom-tools/sops"      "https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux.${GO_ARCH}" && \
     wget -qO-                          "https://github.com/FiloSottile/age/releases/download/${AGE_VERSION}/age-${AGE_VERSION}-linux-${GO_ARCH}.tar.gz" | tar zxv --strip-components=1 -C /custom-tools age/age age/age-keygen && \
