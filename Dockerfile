@@ -29,6 +29,8 @@ ARG YQ_VERSION=v4.44.2
 ARG CURL_VERSION=v8.7.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
+# renovate: datasource=github-tags depName=helmfile/vals
+ARG VALS_VERSION=0.37.1
   
 RUN mkdir -p /gitops-tools/helm-plugins
 
@@ -41,6 +43,7 @@ RUN \
     wget -qO "/gitops-tools/yq"        "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/yq_linux_${GO_ARCH}" && \
     wget -qO "/gitops-tools/kubectl"   "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${GO_ARCH}/kubectl" && \
     wget -qO-                          "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /gitops-tools kustomize && \
+    wget -qO-                          "https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /gitops-tools vals && \
     true
 
 RUN \
