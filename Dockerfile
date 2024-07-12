@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=docker.io/library/ubuntu:24.04@sha256:2e863c44b718727c860746568e1d54afd13b2fa71b160f5cd9058fc436217b30
+ARG BASE_IMAGE=docker.io/library/alpine:3
 
 FROM $BASE_IMAGE
   
@@ -30,13 +30,6 @@ ARG CURL_VERSION=v8.7.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
   
-# plugin versions
-# renovate: datasource=github-tags depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.9.9
-# renovate: datasource=github-tags depName=aslafy-z/helm-git
-ARG HELM_GIT_VERSION=v1.3.0
-# renovate: datasource=github-tags depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v4.6.0
 
 RUN mkdir -p custom-tools/helm-plugins
 WORKDIR /custom-tools
@@ -52,11 +45,21 @@ RUN \
     wget -qO "/custom-tools/curl"      "https://github.com/moparisthebest/static-curl/releases/download/${CURL_VERSION}/curl-$(uname -m)" && \
     wget -qO "/custom-tools/kubectl"   "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${GO_ARCH}/kubectl" && \
     wget -qO-                          "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /custom-tools kustomize && \
-    wget -qO-                          "https://github.com/jkroepke/helm-secrets/releases/download/${HELM_SECRETS_VERSION}/helm-secrets.tar.gz" | tar -C /custom-tools/helm-plugins -xzf-; && \
-    wget -qO-                          "https://github.com/databus23/helm-diff/releases/download/${HELM_DIFF_VERSION}/helm-diff-linux-${GO_ARCH}.tgz" | tar -C /custom-tools/helm-plugins -xzf-; && \
-    wget -qO-                          "https://github.com/aslafy-z/helm-git/archive/refs/tags/${HELM_GIT_VERSION}.tar.gz" | tar -C /custom-tools/helm-plugins -xzf-; && \
     true
 
-RUN cp /custom-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /custom-tools/helm && \
+# plugin versions
+# renovate: datasource=github-tags depName=databus23/helm-diff
+ARG HELM_DIFF_VERSION=v3.9.9
+# renovate: datasource=github-tags depName=aslafy-z/helm-git
+ARG HELM_GIT_VERSION=v1.3.0
+# renovate: datasource=github-tags depName=jkroepke/helm-secrets
+ARG HELM_SECRETS_VERSION=v4.6.0
+
+RUN \
+    GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
+    wget -qO-                          "https://github.com/jkroepke/helm-secrets/releases/download/${HELM_SECRETS_VERSION}/helm-secrets.tar.gz" | tar -C /custom-tools/helm-plugins -xzf- && \
+    wget -qO-                          "https://github.com/databus23/helm-diff/releases/download/${HELM_DIFF_VERSION}/helm-diff-linux-${GO_ARCH}.tgz" | tar -C /custom-tools/helm-plugins -xzf- && \
+    wget -qO-                          "https://github.com/aslafy-z/helm-git/archive/refs/tags/${HELM_GIT_VERSION}.tar.gz" | tar -C /custom-tools/helm-plugins -xzf- && \
+    cp /custom-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /custom-tools/helm && \
     chmod +x /custom-tools/* && \
     true
