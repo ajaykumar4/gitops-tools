@@ -1,5 +1,5 @@
-![Image](https://img.shields.io/docker/pulls/ajaykumar4/argocd-helmfile.svg)
-![Image](https://img.shields.io/github/actions/workflow/status/ajaykumar4/argocd-helmfile/main.yml?branch=main&style=flat-square)
+![Image](https://img.shields.io/docker/pulls/ajaykumar4/gitops-tools.svg)
+![Image](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/main.yml?branch=main&style=flat-square)
 
 # Intro
 
@@ -48,7 +48,7 @@ repoServer:
 
   extraContainers:
   - name: helmfile-plugin
-    image: ajaykumar4/argocd-helmfile
+    image: ajaykumar4/gitops-tools
     command: [/var/run/argocd/argocd-cmp-server]
     env:
     ...
@@ -93,7 +93,7 @@ repoServer:
     image: alpine:3.8
     command: [sh, -c]
     args:
-      - wget -qO /custom-tools/argocd-helmfile.sh https://raw.githubusercontent.com/ajaykumar4/argocd-helmfile/main/src/argocd-helmfile.sh &&
+      - wget -qO /custom-tools/argocd-helmfile.sh https://raw.githubusercontent.com/ajaykumar4/gitops-tools/main/src/argocd-helmfile.sh &&
         chmod +x /custom-tools/argocd-helmfile.sh &&
         wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64 &&
         chmod +x /custom-tools/helmfile
