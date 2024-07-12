@@ -24,7 +24,7 @@ ARG KUSTOMIZE_VERSION=5.4.2
 # renovate: datasource=github-tags depName=mozilla/sops
 ARG SOPS_VERSION=v3.8.1
 # renovate: datasource=github-tags depName=mikefarah/yq
-ARG YQ_VERSION=v4.44.1
+ARG YQ_VERSION=v4.44.2
 # renovate: datasource=github-tags depName=moparisthebest/static-curl
 ARG CURL_VERSION=v8.7.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
