@@ -32,7 +32,6 @@ ARG KUBECTL_VERSION=v1.30.2
   
 
 RUN mkdir -p custom-tools/helm-plugins
-WORKDIR /custom-tools
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
