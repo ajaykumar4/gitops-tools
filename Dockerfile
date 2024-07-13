@@ -67,3 +67,5 @@ RUN \
     cp /gitops-tools/helm-plugins/helm-secrets/scripts/wrapper/helm.sh /gitops-tools/helm && \
     chmod +x /gitops-tools/* && \
     true
+
+WORKDIR /gitops-tools
