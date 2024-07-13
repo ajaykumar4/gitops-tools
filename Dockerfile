@@ -21,7 +21,7 @@ ARG JQ_VERSION=1.7.1
 ARG HELMFILE_VERSION=0.166.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.4.2
-# renovate: datasource=github-tags depName=mozilla/sops
+# renovate: datasource=github-tags depName=getsops/sops
 ARG SOPS_VERSION=v3.9.0
 # renovate: datasource=github-tags depName=mikefarah/yq
 ARG YQ_VERSION=v4.44.2
@@ -36,7 +36,7 @@ RUN mkdir -p /gitops-tools/helm-plugins
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
-    wget -qO "/gitops-tools/sops"      "https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux.${GO_ARCH}" && \
+    wget -qO "/gitops-tools/sops"      "https://github.com/getsops/sops/releases/download/${SOPS_VERSION}/sops-${SOPS_VERSION}.linux.${GO_ARCH}" && \
     wget -qO-                          "https://github.com/FiloSottile/age/releases/download/${AGE_VERSION}/age-${AGE_VERSION}-linux-${GO_ARCH}.tar.gz" | tar zxv --strip-components=1 -C /gitops-tools age/age age/age-keygen && \
     wget -qO-                          "https://github.com/helmfile/helmfile/releases/download/v${HELMFILE_VERSION}/helmfile_${HELMFILE_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /gitops-tools helmfile && \
     wget -qO "/gitops-tools/jq"        "https://github.com/jqlang/jq/releases/download/jq-${JQ_VERSION}/jq-linux-${GO_ARCH}" && \
