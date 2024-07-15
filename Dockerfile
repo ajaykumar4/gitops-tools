@@ -31,6 +31,8 @@ ARG CURL_VERSION=v8.7.1
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-tags depName=helmfile/vals
 ARG VALS_VERSION=0.37.3
+# renovate: datasource=github-tags depName=viaduct-ai/kustomize-sops
+ARG KSOPS_VERSION=4.3.2
   
 RUN mkdir -p /gitops-tools/helm-plugins
 
@@ -49,6 +51,11 @@ RUN \
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/') && \
     wget -qO "/gitops-tools/curl"      "https://github.com/moparisthebest/static-curl/releases/download/${CURL_VERSION}/curl-${GO_ARCH}" && \
+    true
+
+RUN \
+    GO_ARCH=$(uname -m | sed -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
+    wget -qO-                          "https://github.com/viaduct-ai/kustomize-sops/releases/download/v${KSOPS_VERSION}/ksops_${KSOPS_VERSION}_Linux_${GO_ARCH}.tar.gz" | tar zxv -C /gitops-tools ksops && \
     true
 
 # plugin versions
