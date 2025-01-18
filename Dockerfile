@@ -11,27 +11,27 @@ ARG BUILDPLATFORM
 RUN echo "I am running on final $BUILDPLATFORM, building for $TARGETPLATFORM"
   
 # binary versions
-# renovate: datasource=github-tags depName=FiloSottile/age
+# renovate: datasource=github-releases depName=FiloSottile/age
 ARG AGE_VERSION=v1.2.1
-# renovate: datasource=github-tags depName=jqlang/jq
+# renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
-# renovate: datasource=github-tags depName=helm/helm
+# renovate: datasource=github-releases depName=helm/helm
 # ARG HELM_VERSION=v3.15.3
-# renovate: datasource=github-tags depName=helmfile/helmfile
+# renovate: datasource=github-releases depName=helmfile/helmfile
 ARG HELMFILE_VERSION=0.170.0
-# renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
+# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.6.0
-# renovate: datasource=github-tags depName=getsops/sops
+# renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.9.3
-# renovate: datasource=github-tags depName=mikefarah/yq
+# renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.45.1
-# renovate: datasource=github-tags depName=moparisthebest/static-curl
+# renovate: datasource=github-releases depName=moparisthebest/static-curl
 ARG CURL_VERSION=v8.11.0
-# renovate: datasource=github-tags depName=kubernetes/kubectl
+# renovate: datasource=github-releases depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
-# renovate: datasource=github-tags depName=helmfile/vals
+# renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.39.0
-# renovate: datasource=github-tags depName=viaduct-ai/kustomize-sops
+# renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.3.3
   
 RUN mkdir -p /gitops-tools/helm-plugins
@@ -59,11 +59,11 @@ RUN \
     true
 
 # plugin versions
-# renovate: datasource=github-tags depName=databus23/helm-diff
+# renovate: datasource=github-releases depName=databus23/helm-diff
 ARG HELM_DIFF_VERSION=v3.9.14
-# renovate: datasource=github-tags depName=aslafy-z/helm-git
+# renovate: datasource=github-releases depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.3.0
-# renovate: datasource=github-tags depName=jkroepke/helm-secrets
+# renovate: datasource=github-releases depName=jkroepke/helm-secrets
 ARG HELM_SECRETS_VERSION=v4.6.2
 
 RUN \
