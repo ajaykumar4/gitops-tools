@@ -15,7 +15,7 @@
   "schedule": ["every weekend"],
   "ignorePaths": ["**/src/**", "*.yaml"],
   "dockerfile": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
+    "fileMatch": ["(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"]
   },
   "packageRules": [
     {
