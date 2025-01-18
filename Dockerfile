@@ -18,7 +18,7 @@ ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-tags depName=helm/helm
 # ARG HELM_VERSION=v3.15.3
 # renovate: datasource=github-tags depName=helmfile/helmfile
-ARG HELMFILE_VERSION=0.166.0
+ARG HELMFILE_VERSION=0.170.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.5.0
 # renovate: datasource=github-tags depName=getsops/sops
