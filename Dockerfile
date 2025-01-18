@@ -32,7 +32,7 @@ ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-tags depName=helmfile/vals
 ARG VALS_VERSION=0.37.3
 # renovate: datasource=github-tags depName=viaduct-ai/kustomize-sops
-ARG KSOPS_VERSION=4.3.2
+ARG KSOPS_VERSION=4.3.3
   
 RUN mkdir -p /gitops-tools/helm-plugins
 
