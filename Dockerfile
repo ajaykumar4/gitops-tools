@@ -2,7 +2,7 @@ ARG BASE_IMAGE=docker.io/library/alpine:3.21@sha256:56fa17d2a7e7f168a043a2712e63
 
 FROM $BASE_IMAGE
   
-LABEL org.opencontainers.image.source https://github.com/ajaykumar4/home-lab-argocd
+LABEL org.opencontainers.image.source https://github.com/ajaykumar4/gitops-tools
   
 ENV DEBIAN_FRONTEND=noninteractive
 ARG TARGETPLATFORM
