@@ -13,24 +13,9 @@
   "dependencyDashboardTitle": "Renovate Dashboard 🤖",
   "suppressNotifications": ["prEditedNotification", "prIgnoreNotification"],
   "schedule": ["every weekend"],
-  "ignorePaths": ["**/*.sops.*"],
-  "argocd": {
+  "ignorePaths": ["**/src/**", "*.yaml"],
+  "dockerfile": {
     "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
-  },
-  "helm-values": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
-  },
-  "helmfile": {
-    "fileMatch": ["(^|/)helmfile\\.ya?ml(?:\\.j2)?$"]
-  },
-  "kubernetes": {
-    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
-  },
-  "kustomize": {
-    "fileMatch": ["(^|/)kustomization\\.ya?ml(?:\\.j2)?$"]
-  },
-  "pip_requirements": {
-    "fileMatch": ["(^|/)[\\w-]*requirements(-\\w+)?\\.(txt|pip)(?:\\.j2)?$"]
   },
   "packageRules": [
     {
@@ -40,27 +25,6 @@
       "automergeType": "branch",
       "ignoreTests": true,
       "matchUpdateTypes": ["minor", "patch"]
-    },
-    {
-      "description": ["Argo Operator Group"],
-      "groupName": "Argo Operator",
-      "matchPackagePatterns": ["argo-cd"],
-      "matchDatasources": ["docker"],
-      "group": {
-        "commitMessageTopic": "{{{groupName}}} group"
-      }
-    },
-    {
-      "description": ["Talos Group"],
-      "groupName": "Talos",
-      "matchPackagePatterns": [
-        "siderolabs/talosctl",
-        "siderolabs/installer"
-      ],
-      "matchDatasources": ["docker"],
-      "group": {
-        "commitMessageTopic": "{{{groupName}}} group"
-      }
     },
     {
       "matchDatasources": ["docker"],
@@ -92,29 +56,6 @@
       "semanticCommitScope": "container",
       "commitMessageTopic": "{{depName}}",
       "commitMessageExtra": "( {{currentDigestShort}} → {{newDigestShort}} )"
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["major"],
-      "commitMessagePrefix": "feat(helm)!: ",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["minor"],
-      "semanticCommitType": "feat",
-      "semanticCommitScope": "helm",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
-    },
-    {
-      "matchDatasources": ["helm"],
-      "matchUpdateTypes": ["patch"],
-      "semanticCommitType": "fix",
-      "semanticCommitScope": "helm",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
       "matchDatasources": ["github-releases", "github-tags"],
@@ -179,27 +120,16 @@
       "addLabels": ["renovate/container"]
     },
     {
-      "matchDatasources": ["helm"],
-      "addLabels": ["renovate/helm"]
-    },
-    {
       "matchDatasources": ["github-releases", "github-tags"],
       "addLabels": ["renovate/github-release"]
     },
     {
       "matchManagers": ["github-actions"],
       "addLabels": ["renovate/github-action"]
-    }
-  ],
-  "customManagers": [
+    },
     {
-      "customType": "regex",
-      "description": ["Process YAML custom dependencies"],
-      "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"],
-      "matchStrings": [
-        "datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)( repository=(?<registryUrl>\\S+))?\\n.+(:\\s|=)(&\\S+\\s)?(?<currentValue>\\S+)",
-      ],
-      "datasourceTemplate": "{{#if datasource}}{{{datasource}}}{{else}}github-releases{{/if}}"
+      matchPackageNames: ["kubernetes-sigs/kustomize"],
+      extractVersion: "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$",
     }
   ]
 }
