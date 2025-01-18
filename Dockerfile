@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=docker.io/library/alpine:3.20@sha256:b89d9c93e9ed3597455c90a0b88a8bbb5cb7188438f70953fede212a0c4394e0
+ARG BASE_IMAGE=docker.io/library/alpine:3.20@sha256:31687a2fdd021f85955bf2d0c2682e9c0949827560e1db546358ea094f740f12
 
 FROM $BASE_IMAGE
   
@@ -18,7 +18,7 @@ ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-tags depName=helm/helm
 # ARG HELM_VERSION=v3.15.3
 # renovate: datasource=github-tags depName=helmfile/helmfile
-ARG HELMFILE_VERSION=0.166.0
+ARG HELMFILE_VERSION=0.170.0
 # renovate: datasource=github-tags depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.5.0
 # renovate: datasource=github-tags depName=getsops/sops
@@ -64,7 +64,7 @@ ARG HELM_DIFF_VERSION=v3.9.9
 # renovate: datasource=github-tags depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.3.0
 # renovate: datasource=github-tags depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v4.6.0
+ARG HELM_SECRETS_VERSION=v4.6.2
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
