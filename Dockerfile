@@ -30,7 +30,7 @@ ARG CURL_VERSION=v8.7.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-tags depName=helmfile/vals
-ARG VALS_VERSION=0.37.3
+ARG VALS_VERSION=0.37.8
 # renovate: datasource=github-tags depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.3.2
   
