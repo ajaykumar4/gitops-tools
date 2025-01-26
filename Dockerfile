@@ -22,7 +22,7 @@ ARG HELMFILE_VERSION=0.170.0
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.6.0
 # renovate: datasource=github-releases depName=getsops/sops
-ARG SOPS_VERSION=v3.9.3
+ARG SOPS_VERSION=v3.9.4
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.45.1
 # renovate: datasource=github-releases depName=moparisthebest/static-curl
