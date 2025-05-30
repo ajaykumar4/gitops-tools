@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=docker.io/library/alpine:3.21@sha256:a8560b36e8b8210634f77d9f7f9efd7ffa463e380b75e2e74aff4511df3ef88c
+ARG BASE_IMAGE=docker.io/library/alpine:3.22@sha256:8a1f59ffb675680d47db6337b49d22281a139e9d709335b492be023728e11715
 
 FROM $BASE_IMAGE
   
@@ -22,15 +22,15 @@ ARG HELMFILE_VERSION=1.1.0
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
 ARG KUSTOMIZE_VERSION=5.6.0
 # renovate: datasource=github-releases depName=getsops/sops
-ARG SOPS_VERSION=v3.9.4
+ARG SOPS_VERSION=v3.10.2
 # renovate: datasource=github-releases depName=mikefarah/yq
-ARG YQ_VERSION=v4.45.1
+ARG YQ_VERSION=v4.45.4
 # renovate: datasource=github-releases depName=moparisthebest/static-curl
 ARG CURL_VERSION=v8.11.0
 # renovate: datasource=github-releases depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-releases depName=helmfile/vals
-ARG VALS_VERSION=0.39.3
+ARG VALS_VERSION=0.41.1
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.3.3
   
@@ -60,11 +60,11 @@ RUN \
 
 # plugin versions
 # renovate: datasource=github-releases depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.10.0
+ARG HELM_DIFF_VERSION=v3.12.1
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.3.0
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v4.6.3
+ARG HELM_SECRETS_VERSION=v4.6.5
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
