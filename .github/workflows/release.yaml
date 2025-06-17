@@ -96,6 +96,7 @@ jobs:
         with:
           package-names: 'gitops-tools'
           account-type: 'personal'
+          keep-younger-than: '360 days'
           delete-untagged: true
           keep-last: 10
           token: ${{ secrets.GITHUB_TOKEN }}
