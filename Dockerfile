@@ -30,7 +30,7 @@ ARG CURL_VERSION=v8.11.0
 # renovate: datasource=github-releases depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-releases depName=helmfile/vals
-ARG VALS_VERSION=0.41.1
+ARG VALS_VERSION=0.41.2
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.3.3
   
@@ -60,9 +60,9 @@ RUN \
 
 # plugin versions
 # renovate: datasource=github-releases depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.12.1
+ARG HELM_DIFF_VERSION=v3.12.2
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
-ARG HELM_GIT_VERSION=v1.3.0
+ARG HELM_GIT_VERSION=v1.4.0
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
 ARG HELM_SECRETS_VERSION=v4.6.5
 
