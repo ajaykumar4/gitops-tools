@@ -1,5 +1,5 @@
 ![Image](https://img.shields.io/docker/pulls/ajaykumar4/gitops-tools.svg)
-![Image](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/main.yml?branch=main&style=flat-square)
+![Image](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/release.yaml?branch=main&style=flat-square)
 
 # Intro
 
