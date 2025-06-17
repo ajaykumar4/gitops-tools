@@ -83,20 +83,3 @@ jobs:
           generateReleaseNotes: true
           tag: ${{ steps.determine-next-tag.outputs.result }}
           token: "${{ secrets.GITHUB_TOKEN }}"
-
-  cleanup-ghcr:
-    name: "Cleanup GHCR Images"
-    needs: release
-    runs-on: ubuntu-latest
-    permissions:
-      packages: write
-    steps:
-      - name: "Delete old and untagged container images"
-        uses: snok/container-retention-policy@v2
-        with:
-          package-names: 'gitops-tools'
-          account-type: 'personal'
-          keep-younger-than: '360 days'
-          delete-untagged: true
-          keep-last: 10
-          token: ${{ secrets.GITHUB_TOKEN }}
