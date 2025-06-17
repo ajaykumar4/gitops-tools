@@ -95,6 +95,7 @@ jobs:
         uses: snok/container-retention-policy@v2
         with:
           package-names: 'gitops-tools'
+          account-type: 'personal'
           delete-untagged: true
           keep-last: 10
           token: ${{ secrets.GITHUB_TOKEN }}

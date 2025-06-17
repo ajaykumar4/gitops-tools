@@ -1,5 +1,4 @@
-{
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+"$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
     "docker:enableMajor",
@@ -20,14 +19,12 @@
       "description": "Group all GitOps tools from Dockerfile/Containerfile",
       "groupName": "GitOps Tools",
       "matchManagers": ["regex"],
-      "matchFilePaths": ["**/Dockerfile*", "**/Containerfile*"],
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       }
     },
     {
       "description": "Auto-merge updates for Dockerfile/Containerfile dependencies",
-      "matchFilePaths": ["**/Dockerfile*", "**/Containerfile*"],
       "matchManagers": ["docker", "regex"],
       "automerge": true,
       "automergeType": "branch",
