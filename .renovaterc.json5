@@ -23,6 +23,9 @@
     "**/src/**",
     "*.yaml"
   ],
+  "docker": {
+    "enabled": true
+  },
   "dockerfile": {
     "managerFilePatterns": [
       "/(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$/"
@@ -147,6 +150,18 @@
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "extractVersion": "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update CLI tools in Docker/Containerfiles",
+      "fileMatch": ["(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\nARG (?<depNameEnv>[A-Z_]+)=(?<currentValue>.+)"
+      ],
+      "datasourceTemplate": "{{{ datasource }}}",
+      "depNameTemplate": "{{{ depName }}}"
     }
   ]
 }
