@@ -106,6 +106,7 @@ Apply the following patch to your argocd-repo-server deployment. This sets up th
 repoServer:
   initContainers:
     - name: gitops-tools
+      # renovate: datasource=github-releases depName=ajaykumar4/gitops-tools
       image: ajaykumar4/gitops-tools:2025.7.0
       imagePullPolicy: Always
       command: [sh, -ec]
