@@ -28,7 +28,7 @@
   },
   "dockerfile": {
     "managerFilePatterns": [
-      "/(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$/"
+      "(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
     ]
   },
   "packageRules": [
@@ -150,6 +150,10 @@
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "extractVersion": "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
+    },
+    {
+      "matchPackageNames": ["kubernetes/kubectl"],
+      "extractVersion": "^v(?<version>\\d+\\.\\d+\\.\\d+)$"
     }
   ],
   "customManagers": [
@@ -161,7 +165,8 @@
         "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\nARG (?<depNameEnv>[A-Z_]+)=(?<currentValue>.+)"
       ],
       "datasourceTemplate": "{{{ datasource }}}",
-      "depNameTemplate": "{{{ depName }}}"
+      "depNameTemplate": "{{{ depName }}}",
+      "versioningTemplate": "semver"
     }
   ]
 }
