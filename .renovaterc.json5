@@ -1,223 +1,185 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: [
-    'config:recommended',
-    'docker:enableMajor',
-    ':automergeBranch',
-    ':dependencyDashboard',
-    ':disableRateLimiting',
-    ':semanticCommits',
-    ':separatePatchReleases',
-    'customManagers:dockerfileVersions',
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "docker:enableMajor",
+    ":automergeBranch",
+    ":dependencyDashboard",
+    ":disableRateLimiting",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "customManagers:dockerfileVersions"
   ],
-  dependencyDashboard: true,
-  dependencyDashboardTitle: 'Renovate Dashboard 🤖',
-  suppressNotifications: [
-    'prEditedNotification',
-    'prIgnoreNotification',
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "suppressNotifications": [
+    "prEditedNotification",
+    "prIgnoreNotification"
   ],
-  schedule: [
-    'every weekend',
+  "schedule": [
+    "every weekend"
   ],
-  ignorePaths: [
-    '**/src/**',
-    '*.yaml',
-  ],
-  dockerfile: {
-    managerFilePatterns: [
-      '/(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$/',
-    ],
+  "docker": {
+    "enabled": true
   },
-  packageRules: [
+  "dockerfile": {
+    "managerFilePatterns": [
+      "(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
+    ]
+  },
+  "packageRules": [
     {
-      description: [
-        'Auto-merge GitHub Actions for minor and patch',
-      ],
-      matchManagers: [
-        'github-actions',
-      ],
-      automerge: true,
-      automergeType: 'branch',
-      ignoreTests: true,
-      matchUpdateTypes: [
-        'minor',
-        'patch',
-      ],
+      "description": ["Auto-merge all non-major updates"],
+      "automerge": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": ["minor", "patch", "digest"]
     },
     {
-      matchDatasources: [
-        'docker',
-      ],
-      matchUpdateTypes: [
-        'major',
-      ],
-      commitMessagePrefix: 'feat(container)!: ',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: ' ( {{currentVersion}} → {{newVersion}} )',
+      "description": ["Auto-merge GitHub Actions for minor and patch"],
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "automergeType": "branch",
+      "ignoreTests": true,
+      "matchUpdateTypes": ["minor", "patch"]
     },
     {
-      matchDatasources: [
-        'docker',
-      ],
-      matchUpdateTypes: [
-        'minor',
-      ],
-      semanticCommitType: 'feat',
-      semanticCommitScope: 'container',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(container)!: ",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": " ( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchDatasources: [
-        'docker',
-      ],
-      matchUpdateTypes: [
-        'patch',
-      ],
-      semanticCommitType: 'fix',
-      semanticCommitScope: 'container',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "container",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchDatasources: [
-        'docker',
-      ],
-      matchUpdateTypes: [
-        'digest',
-      ],
-      semanticCommitType: 'chore',
-      semanticCommitScope: 'container',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentDigestShort}} → {{newDigestShort}} )',
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "container",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchDatasources: [
-        'github-releases',
-        'github-tags',
-      ],
-      matchUpdateTypes: [
-        'major',
-      ],
-      commitMessagePrefix: 'feat(github-release)!: ',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["digest"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "container",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentDigestShort}} → {{newDigestShort}} )"
     },
     {
-      matchDatasources: [
-        'github-releases',
-        'github-tags',
-      ],
-      matchUpdateTypes: [
-        'minor',
-      ],
-      semanticCommitType: 'feat',
-      semanticCommitScope: 'github-release',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchDatasources": ["github-releases", "github-tags"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(github-release)!: ",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchDatasources: [
-        'github-releases',
-        'github-tags',
-      ],
-      matchUpdateTypes: [
-        'patch',
-      ],
-      semanticCommitType: 'fix',
-      semanticCommitScope: 'github-release',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchDatasources": ["github-releases", "github-tags"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "github-release",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchManagers: [
-        'github-actions',
-      ],
-      matchUpdateTypes: [
-        'major',
-      ],
-      commitMessagePrefix: 'feat(github-action)!: ',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchDatasources": ["github-releases", "github-tags"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "github-release",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchManagers: [
-        'github-actions',
-      ],
-      matchUpdateTypes: [
-        'minor',
-      ],
-      semanticCommitType: 'feat',
-      semanticCommitScope: 'github-action',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(github-action)!: ",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchManagers: [
-        'github-actions',
-      ],
-      matchUpdateTypes: [
-        'patch',
-      ],
-      semanticCommitType: 'fix',
-      semanticCommitScope: 'github-action',
-      commitMessageTopic: '{{depName}}',
-      commitMessageExtra: '( {{currentVersion}} → {{newVersion}} )',
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "semanticCommitScope": "github-action",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchUpdateTypes: [
-        'major',
-      ],
-      labels: [
-        'type/major',
-      ],
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "semanticCommitScope": "github-action",
+      "commitMessageTopic": "{{depName}}",
+      "commitMessageExtra": "( {{currentVersion}} → {{newVersion}} )"
     },
     {
-      matchUpdateTypes: [
-        'minor',
-      ],
-      labels: [
-        'type/minor',
-      ],
+      "matchUpdateTypes": ["major"],
+      "labels": ["type/major"]
     },
     {
-      matchUpdateTypes: [
-        'patch',
-      ],
-      labels: [
-        'type/patch',
-      ],
+      "matchUpdateTypes": ["minor"],
+      "labels": ["type/minor"]
     },
     {
-      matchDatasources: [
-        'docker',
-      ],
-      addLabels: [
-        'renovate/container',
-      ],
+      "matchUpdateTypes": ["patch"],
+      "labels": ["type/patch"]
     },
     {
-      matchDatasources: [
-        'github-releases',
-        'github-tags',
-      ],
-      addLabels: [
-        'renovate/github-release',
-      ],
+      "matchDatasources": ["docker"],
+      "addLabels": ["renovate/container"]
     },
     {
-      matchManagers: [
-        'github-actions',
-      ],
-      addLabels: [
-        'renovate/github-action',
-      ],
+      "matchDatasources": ["github-releases", "github-tags"],
+      "addLabels": ["renovate/github-release"]
     },
     {
-      matchPackageNames: [
-        'kubernetes-sigs/kustomize',
-      ],
-      extractVersion: '^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$',
+      "matchManagers": ["github-actions"],
+      "addLabels": ["renovate/github-action"]
     },
+    {
+      "matchPackageNames": ["kubernetes-sigs/kustomize"],
+      "extends": [":automergeMinor"]
+    },
+    {
+      "matchPackageNames": ["kubernetes/kubectl"],
+      "extends": [":automergeMinor"]
+    },
+    {
+      "matchPackageNames": ["kubernetes-sigs/kustomize"],
+      "extractVersion": "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
+    },
+    {
+      "matchPackageNames": ["kubernetes/kubectl"],
+      "extractVersion": "^kubernetes-(?<version>\\d+\\.\\d+\\.\\d+)$"
+    }
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update CLI tools in Docker/Containerfiles",
+      "fileMatch": ["(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\nARG (?<depNameEnv>[A-Z_]+)=(?<currentValue>.+)"
+      ],
+      "datasourceTemplate": "{{datasource}}",
+      "depNameTemplate": "{{depName}}",
+    },
+    {
+      "customType": "regex",
+      "description": "Update tool versions in README.md",
+      "fileMatch": ["(^|/)README\\.md$"],
+      "matchStrings": [
+        "<!--\\s*# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s*-->.*\\bv(?<currentValue>[0-9a-zA-Z\\.\\-\\+]+)\\b",
+      ],
+      "datasourceTemplate": "{{datasource}}",
+      "depNameTemplate": "{{depName}}",
+    }
+  ]
 }
