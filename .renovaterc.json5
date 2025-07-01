@@ -19,10 +19,6 @@
   "schedule": [
     "every weekend"
   ],
-  "ignorePaths": [
-    "**/src/**",
-    "*.yaml"
-  ],
   "docker": {
     "enabled": true
   },
