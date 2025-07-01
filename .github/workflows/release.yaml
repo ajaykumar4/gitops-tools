@@ -107,7 +107,7 @@ jobs:
           sed -i -E "s|(image: ajaykumar4/gitops-tools:)[0-9a-zA-Z.\-+]+|\1${{ needs.release.outputs.release_tag }}|g" README.md
 
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v6
         with:
           commit_message: "chore: update image tag to ${{ needs.release.outputs.release_tag }}"
           file_pattern: README.md
