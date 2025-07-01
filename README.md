@@ -44,9 +44,9 @@ This image packages the following command-line tools. All binaries are located i
 
 | Tool         | Version  | Description                                                     |
 |--------------|----------|-----------------------------------------------------------------|
-| age          | # renovate: datasource=github-releases depName=FiloSottile/age v1.2.1   | A simple, modern, and secure file encryption tool.              |
-| curl         | # renovate: datasource=github-releases depName=moparisthebest/static-curl v8.11.0  | A static build of the command-line tool for transferring data with URL syntax. |
-| helmfile     | # renovate: datasource=github-releases depName=helmfile/helmfile v1.1.2   | A declarative spec for deploying Helm charts.                   |
+| age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> v1.2.1   | A simple, modern, and secure file encryption tool.              |
+| curl         | <!-- # renovate: datasource=github-releases depName=moparisthebest/static-curl --> v8.11.0  | A static build of the command-line tool for transferring data with URL syntax. |
+| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> v1.1.2   | A declarative spec for deploying Helm charts.                   |
 | jq           | # renovate: datasource=github-releases depName=jqlang/jq v1.7.1   | A lightweight and flexible command-line JSON processor.         |
 | kubectl      | # renovate: datasource=github-tags depName=kubernetes/kubectl v1.30.2  | The Kubernetes command-line tool.                               |
 | kustomize    | # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize v5.7.0   | Customization of Kubernetes YAML configurations.                |
