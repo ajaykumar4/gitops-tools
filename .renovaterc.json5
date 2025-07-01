@@ -175,6 +175,17 @@
       "datasourceTemplate": "{{{ datasource }}}",
       "depNameTemplate": "{{{ depName }}}",
       "versioningTemplate": "semver"
+    },
+    {
+      "customType": "regex",
+      "description": "Update tool versions in README.md",
+      "fileMatch": ["(^|/)README\\.md$"],
+      "matchStrings": [
+        "\\s*.*?v?(?<currentValue>[^\\s`]+)"
+      ],
+      "datasourceTemplate": "{{datasource}}",
+      "depNameTemplate": "{{depName}}",
+      "versioningTemplate": "{{versioning}}"
     }
   ]
 }
