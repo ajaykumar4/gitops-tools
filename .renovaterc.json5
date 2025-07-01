@@ -168,9 +168,9 @@
       "matchStrings": [
         "# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\nARG (?<depNameEnv>[A-Z_]+)=(?<currentValue>.+)"
       ],
-      "datasourceTemplate": "{{{ datasource }}}",
-      "depNameTemplate": "{{{ depName }}}",
-      "versioningTemplate": "semver"
+      "datasourceTemplate": "{{datasource}}",
+      "depNameTemplate": "{{depName}}",
+      "versioningTemplate": "{{versioning}}"
     },
     {
       "customType": "regex",
