@@ -175,7 +175,7 @@
     {
       "customType": "regex",
       "description": "Update tool versions in README.md",
-      "fileMatch": ["(^|/)README\\.md$"],
+      "fileMatch": ["(^|/)README\\.md$", ".*\\.yaml$"],
       "matchStrings": [
         "<!--\\s*# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s*-->.*\\bv(?<currentValue>[0-9a-zA-Z\\.\\-\\+]+)\\b"
       ],
