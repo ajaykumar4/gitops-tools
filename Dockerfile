@@ -15,11 +15,9 @@ RUN echo "I am running on final $BUILDPLATFORM, building for $TARGETPLATFORM"
 ARG AGE_VERSION=v1.2.1
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
-# renovate: datasource=github-releases depName=helm/helm
-# ARG HELM_VERSION=v3.15.3
 # renovate: datasource=github-releases depName=helmfile/helmfile
 ARG HELMFILE_VERSION=1.1.2
-# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize extractVersion=kustomize/v
+# renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
 ARG KUSTOMIZE_VERSION=5.7.0
 # renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.10.2
@@ -27,8 +25,8 @@ ARG SOPS_VERSION=v3.10.2
 ARG YQ_VERSION=v4.45.4
 # renovate: datasource=github-releases depName=moparisthebest/static-curl
 ARG CURL_VERSION=v8.11.0
-# renovate: datasource=github-releases depName=kubernetes/kubectl
-ARG KUBECTL_VERSION=v1.30.2
+# renovate: datasource=github-tags depName=kubernetes/kubectl
+ARG KUBECTL_VERSION=1.33.2
 # renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.41.2
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops

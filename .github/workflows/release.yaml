@@ -13,6 +13,8 @@ jobs:
     permissions:
       contents: write   # To create releases and tags
       packages: write   # To push images to GHCR
+    outputs:
+      release_tag: ${{ steps.determine-next-tag.outputs.result }}
     steps:
       - name: "Get Previous Release Tag and Determine Next Tag"
         id: determine-next-tag
@@ -83,3 +85,33 @@ jobs:
           generateReleaseNotes: true
           tag: ${{ steps.determine-next-tag.outputs.result }}
           token: "${{ secrets.GITHUB_TOKEN }}"
+
+  update-readme:
+    name: Update README with new image tag
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # To create releases and tags
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Git config
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Update image version in README.md
+        run: |
+          sed -i -E "s|(image: ajaykumar4/gitops-tools:)[0-9a-zA-Z.\-+]+|\1${{ needs.release.outputs.release_tag }}|g" README.md
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update image tag to ${{ needs.release.outputs.release_tag }}"
+          file_pattern: README.md
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
