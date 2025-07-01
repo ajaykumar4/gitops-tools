@@ -1,216 +1,247 @@
-![Image](https://img.shields.io/docker/pulls/ajaykumar4/gitops-tools.svg)
-![Image](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/release.yaml?branch=main&style=flat-square)
+# GitOps Tools Docker Image
 
-# Intro
+[![Docker Build](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/release.yaml?branch=main&style=for-the-badge)](https://github.com/ajaykumar4/gitops-tools/actions/workflows/release.yaml)  
+[![Docker Pulls](https://img.shields.io/docker/pulls/ajaykumar4/gitops-tools.svg?style=for-the-badge)](https://hub.docker.com/r/ajaykumar4/gitops-tools)  
+[![GitHub License](https://img.shields.io/github/license/ajaykumar4/gitops-tools?style=for-the-badge)](./LICENSE)  
+[![GitHub Stars](https://img.shields.io/github/stars/ajaykumar4/gitops-tools?style=for-the-badge)](https://github.com/ajaykumar4/gitops-tools/stargazers)  
 
-Support for `helmfile` with `argo-cd`.
+---
 
-`argo-cd` already supports `helm` in 2 distinct ways, why is this useful?
+## Table of Contents
 
-- It helps decouple configuration from chart development
-- It's similar to using a repo type of `helm` but you can still manage
-  configuration with git.
-- Because I like the power afforded using `helmfile`'s features such as
-  `environments`, `selectors`, templates, and being able to use `ENV` vars as
-  conditionals **AND** values.
-- https://github.com/helmfile/helmfile/blob/main/docs/writing-helmfile.md
-- https://github.com/helmfile/helmfile/blob/main/docs/shared-configuration-across-teams.md
+- [About](#about)
+- [Key Features](#key-features)
+- [Included Tools](#included-tools)
+- [Helm Plugins](#helm-plugins)
+- [ArgoCD Integration](#argocd-integration)
+- [Usage](#usage)
+- [Contributing](#contributing)
 
-# Security
+---
 
-Please make note that `helmfile` itself allows execution of arbitrary scripts.
-Due to this feature, execution of arbitrary scripts are allowed by this plugin,
-both explicitly (see `HELMFILE_INIT_SCRIPT_FILE` env below) and implicity.
+## About
 
-Consider these implications for your environment and act appropriately.
+A curated, multi-platform Docker image containing a suite of essential tools for modern GitOps workflows. Built on Alpine Linux for a minimal footprint and supporting linux/amd64 and linux/arm64 architectures — ideal for CI/CD pipelines and local development (including Apple Silicon).
 
-- https://github.com/roboll/helmfile#templating (`exec` description)
-- https://github.com/helmfile/helmfile/pull/1 (can disable `exec` using env vars)
-- the execution pod/context is the `argocd-repo-server`
+All tool versions are pinned and kept up-to-date automatically via Renovate Bot.
 
-# Installation
+---
 
-- https://argo-cd.readthedocs.io/en/stable/operator-manual/config-management-plugins/
+## Key Features
 
-## Sidecar
+- **Multi-Platform Support:** Built for linux/amd64 and linux/arm64.  
+- **Lightweight:** Based on the minimal alpine:3.22 image.  
+- **Comprehensive Toolset:** Includes a wide range of popular and necessary tools for Kubernetes and Helm-based GitOps.  
+- **Version Pinned:** All tool versions are explicitly pinned and managed.  
+- **CI/CD Ready:** Perfect for use as a runner image in GitHub Actions, GitLab CI, CircleCI, and more.  
+- **Pre-configured Helm:** Comes with popular Helm plugins like helm-secrets, helm-diff, and helm-git pre-installed.  
 
-This shows optional use of sops/age integration. You may add/remove others as necessary.
+---
 
-```yaml
-repoServer:
-  volumes:
-  ...
-  - name: age-secret-keys
-    secret:
-      secretName: argocd-age-secret-keys
-  - emptyDir: {}
-    name: helmfile-cmp-tmp
+## Included Tools
 
-  extraContainers:
-  - name: helmfile-plugin
-    image: ajaykumar4/gitops-tools
-    command: [/var/run/argocd/argocd-cmp-server]
-    env:
-    ...
-    - name: SOPS_AGE_KEY_FILE
-      value: /sops/age/keys.txt
-    securityContext:
-      runAsNonRoot: true
-      runAsUser: 999
-    volumeMounts:
-      ...
-      - mountPath: /sops/age
-        name: age-secret-keys
-      - mountPath: /var/run/argocd
-        name: var-files
-      - mountPath: /home/argocd/cmp-server/plugins
-        name: plugins
-      - mountPath: /tmp
-        name: helmfile-cmp-tmp
-```
+This image packages the following command-line tools. All binaries are located in the `/gitops-tools` directory.
 
-## ConfigMap (deprecated)
+| Tool         | Version  | Description                                                     |
+|--------------|----------|-----------------------------------------------------------------|
+| age          | v1.2.1   | A simple, modern, and secure file encryption tool.              |
+| curl         | v8.11.0  | A static build of the command-line tool for transferring data with URL syntax. |
+| helmfile     | v1.1.2   | A declarative spec for deploying Helm charts.                   |
+| jq           | v1.7.1   | A lightweight and flexible command-line JSON processor.         |
+| kubectl      | v1.30.2  | The Kubernetes command-line tool.                               |
+| kustomize    | v5.7.0   | Customization of Kubernetes YAML configurations.                |
+| kustomize-sops (ksops) | v4.3.3 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
+| sops         | v3.10.2  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
+| vals         | 0.41.2   | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
+| yq           | v4.45.4  | A command-line YAML, JSON, and XML processor.                   |
 
-```yaml
-    configManagementPlugins: |
-      - name: helmfile
-        init:                          # Optional command to initialize application source directory
-          command: ["argocd-helmfile.sh"]
-          args: ["init"]
-        generate:                      # Command to generate manifests YAML
-          command: ["argocd-helmfile.sh"]
-          args: ["generate"]
-
-```
-
-```yaml
-  volumes:
-  - name: custom-tools
-    emptyDir: {}
-
-  initContainers:
-  - name: download-tools
-    image: alpine:3.8
-    command: [sh, -c]
-    args:
-      - wget -qO /custom-tools/argocd-helmfile.sh https://raw.githubusercontent.com/ajaykumar4/gitops-tools/main/src/argocd-helmfile.sh &&
-        chmod +x /custom-tools/argocd-helmfile.sh &&
-        wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64 &&
-        chmod +x /custom-tools/helmfile
-    volumeMounts:
-      - mountPath: /custom-tools
-        name: custom-tools
-  volumeMounts:
-  - mountPath: /usr/local/bin/argocd-helmfile.sh
-    name: custom-tools
-    subPath: argocd-helmfile.sh
-  - mountPath: /usr/local/bin/helmfile
-    name: custom-tools
-    subPath: helmfile
-```
-
-# Usage
-
-Configure your `argo-cd` app to use a repo/directory which holds a valid
-`helmfile` configuration. This can be a directory which contains a
-`helmfile.yaml` file **OR** a `helmfile.d` directory containing any number of
-`*.yaml` files. You cannot have both configurations.
-
-There are a number of specially handled `ENV` variables which can be set (all
-optional):
-
-- `HELM_BINARY` - custom path to `helm` binary
-- `HELM_TEMPLATE_OPTIONS` - pass-through options for the templating operation
-  `helm template --help`
-- `HELMFILE_BINARY` - custom path to `helmfile` binary
-- `HELMFILE_USE_CONTEXT_NAMESPACE` - do not set helmfile namespace to `ARGOCD_APP_NAMESPACE`,
-  for use with multi-namespace apps
-- `HELMFILE_GLOBAL_OPTIONS` - pass-through options for all `helmfile`
-  operations `helmfile --help`
-- `HELMFILE_TEMPLATE_OPTIONS` - pass-through options for the templating
-  operation `helmfile template --help`
-- `HELMFILE_INIT_SCRIPT_FILE` - path to script to execute during init phase
-- `HELMFILE_HELMFILE` - a complete `helmfile.yaml` content
-- `HELMFILE_HELMFILE_STRATEGY` - one of `REPLACE` or `INCLUDE`
-  - `REPLACE` - the default option, only the content of `HELMFILE_HELMFILE` is
-    rendered, if any valid files exist in the repo they are ignored
-  - `INCLUDE` - any valid files in the repo **AND** the content of
-    `HELMFILE_HELMFILE` are rendered, precedence is given to
-    `HELMFILE_HELMFILE` should the same release name be declared in multiple
-    files
-- `HELMFILE_CACHE_CLEANUP` - run helmfile cache cleanup on init
-
-Of the above `ENV` variables, the following do variable expansion on the value:
-
-- `HELMFILE_GLOBAL_OPTIONS`
-- `HELMFILE_TEMPLATE_OPTIONS`
-- `HELM_TEMPLATE_OPTIONS`
-- `HELMFILE_INIT_SCRIPT_FILE`
-- `HELM_DATA_HOME`
-
-Meaning, you can do things like:
-
-- `HELMFILE_GLOBAL_OPTIONS="--environment ${ARGOCD_APP_NAME} --selector cluster=${CLUSTER_ID}`
-
-Any of the standard `Build Environment` variables can be used as well as
-variables declared in the application spec.
-
-- https://argoproj.github.io/argo-cd/user-guide/config-management-plugins/#environment
-- https://argoproj.github.io/argo-cd/user-guide/build-environment/
+All binaries are installed in `/gitops-tools`.
+---
 
 ## Helm Plugins
 
-To use the various helm plugins the recommended approach is the install the
-plugins using the/an `initContainers` (explicitly set the `HELM_DATA_HOME` env
-var during the `helm plugin add` command) and simply set the `HELM_DATA_HOME`
-environment variable in your application spec (or globally in the pod). This
-prevents the plugin(s) from being downloaded over and over each run.
+| Plugin      | Version  | Description                                                    |
+|-------------|----------|----------------------------------------------------------------|
+| helm-diff   | v3.12.2  | A helm plugin for previewing helm upgrade as a diff.           |
+| helm-git    | v1.4.0   | A helm plugin for installing charts from Git repositories.     |
+| helm-secrets| v4.6.5   | A helm plugin for managing secrets with sops or other secret backends. |
+
+Helm is wrapped in a script that automatically uses `helm-secrets` for seamless decryption.
+
+---
+
+## ArgoCD Integration
+
+To use these tools with ArgoCD, you can configure the `argocd-repo-server` to use this image as an `initContainer`. The `initContainer` will copy the tools to a shared `emptyDir` volume, making them available to the main repo-server container.
+
+This allows ArgoCD to natively handle encrypted Helm charts and other GitOps functionalities provided by the tools.
+
+### Configure ArgoCD ConfigMap:
+
+First, update the `argocd-cm` ConfigMap to register the helm-secrets decryption schemes.
 
 ```yaml
-# repo server deployment
-  volumes:
-  ...
-  - name: helm-data-home
-    emptyDir: {}
+configs:
+  cm:
+    helm.valuesFileSchemes: >-
+      secrets+gpg-import, secrets+gpg-import-kubernetes,
+      secrets+age-import, secrets+age-import-kubernetes,
+      secrets, secrets+literal,
+      https
+```
 
-# repo-server container
-  volumeMounts:
-  ...
-  - mountPath: /home/argocd/.local/share/helm
-    name: helm-data-home
+### Create a Secret for Private Keys:
 
-# init container
-  volumeMounts:
-  ...
-  - mountPath: /helm/data
-    name: helm-data-home
+For age encrypted secrets, create a Kubernetes secret containing your private key. The SOPS_AGE_KEY_FILE environment variable points to this key inside the container.
 
-    [[ ! -d "${HELM_DATA_HOME}/plugins/helm-secrets" ]] && /custom-tools/helm plugin install https://github.com/jkroepke/helm-secrets --version ${HELM_SECRETS_VERSION}
-    chown -R 999:999 "${HELM_DATA_HOME}"
+```sh
+# The secret name 'helm-secrets-private-keys' and the key 'key.txt' should match the values in the repoServer patch below.
+kubectl create secret generic helm-secrets-private-keys --from-file=key.txt=/path/to/your/age-key.txt
+```
+### Patch the `argocd-repo-server` Deployment:
 
-# lastly, in your app definition
-...
-plugin:
+Apply the following patch to your argocd-repo-server deployment. This sets up the initContainer, volume mounts, and environment variables required for the tools to function correctly.
+
+```yaml
+repoServer:
+  initContainers:
+    - name: gitops-tools
+      image: ajaykumar4/gitops-tools:2025.7.0
+      imagePullPolicy: Always
+      command: [sh, -ec]
+      args:
+        - |
+          mkdir -p /custom-tools/
+          cp -rf /gitops-tools/* /custom-tools
+          chmod +x /custom-tools/*
+      volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
   env:
-  - name: HELM_DATA_HOME
-    value: /home/argocd/.local/share/helm
+    - name: HELM_PLUGINS
+      value: /custom-tools/helm-plugins/
+    - name: HELM_SECRETS_CURL_PATH
+      value: /custom-tools/curl
+    - name: HELM_SECRETS_SOPS_PATH
+      value: /custom-tools/sops
+    - name: HELM_SECRETS_VALS_PATH
+      value: /custom-tools/vals
+    - name: HELM_SECRETS_KUBECTL_PATH
+      value: /custom-tools/kubectl
+    - name: HELM_SECRETS_BACKEND
+      value: sops
+    # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
+    - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
+      value: "false"
+    - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
+      value: "true"
+    - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
+      value: "false"
+    - name: HELM_SECRETS_WRAPPER_ENABLED
+      value: "true"
+    - name: HELM_SECRETS_DECRYPT_SECRETS_IN_TMP_DIR
+      value: "true"
+    - name: HELM_SECRETS_HELM_PATH
+      value: /usr/local/bin/helm
+    - name: SOPS_AGE_KEY_FILE # For age
+      value: /helm-secrets-private-keys/key.txt
+  volumes:
+    - name: custom-tools
+      emptyDir: {}
+    - name: helm-secrets-private-keys
+      secret:
+        secretName: helm-secrets-private-keys
+  volumeMounts:
+    - mountPath: /custom-tools
+      name: custom-tools
+    - mountPath: /usr/local/sbin/helm
+      subPath: helm
+      name: custom-tools
+    - mountPath: /usr/local/bin/kustomize
+      name: custom-tools
+      subPath: kustomize
+    - mountPath: /usr/local/bin/ksops
+      name: custom-tools
+      subPath: ksops
+    - mountPath: /helm-secrets-private-keys/
+      name: helm-secrets-private-keys
 ```
 
-If the above is not possible/desired, the recommended approach would be to use
-`HELMFILE_INIT_SCRIPT_FILE` to execute an arbitrary script during the `init`
-phase. Within the script it's desireable to run `helm plugin list` and only
-install the plugin only if it's not already installed.
+## Usage
 
-## Custom Init
+### ArgoCD with Helm-Secrets
 
-You can use the `HELMFILE_INIT_SCRIPT_FILE` feature to do any kind of _init_
-logic required including installing helm plugins, downloading external files,
-etc. The value can be a relative or absolute path and the file itself can be
-injected using an `initContainers` or stored in the application git repository.
-
-# Development
-
+#### Argo Application
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cloudflare-dns
+  namespace: argo-system
+  annotations:
+    argocd.argoproj.io/sync-wave: '0'
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: kubernetes
+  sources:
+    - repoURL: "https://github.com/ajaykumar4/home-lab.git"
+      path: kubernetes/apps/network/cloudflare-dns
+      targetRevision: main
+      ref: repo
+    - repoURL: https://kubernetes-sigs.github.io/external-dns
+      chart: external-dns
+      targetRevision: 1.17.0
+      helm:
+        releaseName: cloudflare-dns
+        valueFiles:
+          - $repo/kubernetes/apps/network/cloudflare-dns/values.sops.yaml
+  destination:
+    name: in-cluster
+    namespace: network
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true
 ```
-# format before commit
-shfmt -i 2 -ci -w src/argocd-helmfile.sh
+### ArgoCD with kustomize-sops (ksops)
+
+#### secret.sops.yaml
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-dns-secret
+stringData:
+  api-token: sNdfyrfE-sdgdghfdghfgdjhfgzcvhnd
 ```
+
+#### secret-generator.yaml
+```yaml
+apiVersion: viaduct.ai/v1
+kind: ksops
+metadata:
+  name: cloudflare-dns-secret-generator
+  annotations:
+    config.kubernetes.io/function: |
+      exec:
+        path: ksops
+files:
+  - ./secret.sops.yaml
+```
+
+#### kustomization.yaml
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+generators:
+  - ./secret-generator.yaml
+```
+
+## Contributing
+
+Contributions and suggestions are welcome! To update tool versions, submit a pull request or wait for Renovate Bot to open one automatically.
