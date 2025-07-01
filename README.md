@@ -1,6 +1,7 @@
 # GitOps Tools Docker Image
 
-[![Docker Build](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/release.yaml?branch=main&style=for-the-badge)](https://github.com/ajaykumar4/gitops-tools/actions/workflows/release.yaml)  
+[![Docker Build](https://img.shields.io/github/actions/workflow/status/ajaykumar4/gitops-tools/release.yaml?branch=main&style=for-the-badge)](https://github.com/ajaykumar4/gitops-tools/actions/workflows/release.yaml)
+[![GitHub release](https://img.shields.io/github/v/release/ajaykumar4/gitops-tools?style=for-the-badge)](https://github.com/ajaykumar4/gitops-tools/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/ajaykumar4/gitops-tools.svg?style=for-the-badge)](https://hub.docker.com/r/ajaykumar4/gitops-tools)  
 [![GitHub License](https://img.shields.io/github/license/ajaykumar4/gitops-tools?style=for-the-badge)](./LICENSE)  
 [![GitHub Stars](https://img.shields.io/github/stars/ajaykumar4/gitops-tools?style=for-the-badge)](https://github.com/ajaykumar4/gitops-tools/stargazers)  
@@ -106,7 +107,6 @@ Apply the following patch to your argocd-repo-server deployment. This sets up th
 repoServer:
   initContainers:
     - name: gitops-tools
-      # renovate: datasource=github-releases depName=ajaykumar4/gitops-tools
       image: ajaykumar4/gitops-tools:2025.7.0
       imagePullPolicy: Always
       command: [sh, -ec]
