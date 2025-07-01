@@ -175,9 +175,10 @@
     {
       "customType": "regex",
       "description": "Update tool versions in README.md",
-      "fileMatch": ["(^|/)README\\.md$", ".*\\.yaml$"],
+      "fileMatch": ["(^|/)README\\.md$"],
       "matchStrings": [
-        "<!--\\s*# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s*-->.*\\bv(?<currentValue>[0-9a-zA-Z\\.\\-\\+]+)\\b"
+        "<!--\\s*# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s*-->.*\\bv(?<currentValue>[0-9a-zA-Z\\.\\-\\+]+)\\b",
+        "# renovate:\\s*datasource=(?<datasource>[^\\s]+)\\s+depName=(?<depName>[^\\s]+)[\\s\\S]*?image:\\s*\\1:(?<currentValue>[0-9a-zA-Z\\.\\-\\+]+)"
       ],
       "datasourceTemplate": "{{datasource}}",
       "depNameTemplate": "{{depName}}",

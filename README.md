@@ -80,7 +80,7 @@ This allows ArgoCD to natively handle encrypted Helm charts and other GitOps fun
 
 First, update the `argocd-cm` ConfigMap to register the helm-secrets decryption schemes.
 
-```yaml
+```
 configs:
   cm:
     helm.valuesFileSchemes: >-
@@ -94,7 +94,7 @@ configs:
 
 For age encrypted secrets, create a Kubernetes secret containing your private key. The SOPS_AGE_KEY_FILE environment variable points to this key inside the container.
 
-```sh
+```
 # The secret name 'helm-secrets-private-keys' and the key 'key.txt' should match the values in the repoServer patch below.
 kubectl create secret generic helm-secrets-private-keys --from-file=key.txt=/path/to/your/age-key.txt
 ```
@@ -102,7 +102,7 @@ kubectl create secret generic helm-secrets-private-keys --from-file=key.txt=/pat
 
 Apply the following patch to your argocd-repo-server deployment. This sets up the initContainer, volume mounts, and environment variables required for the tools to function correctly.
 
-```yaml
+```
 repoServer:
   initContainers:
     - name: gitops-tools
@@ -173,7 +173,7 @@ repoServer:
 ### ArgoCD with Helm-Secrets
 
 #### Argo Application
-```yaml
+```
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -212,7 +212,7 @@ spec:
 ### ArgoCD with kustomize-sops (ksops)
 
 #### secret.sops.yaml
-```yaml
+```
 apiVersion: v1
 kind: Secret
 metadata:
@@ -222,7 +222,7 @@ stringData:
 ```
 
 #### secret-generator.yaml
-```yaml
+```
 apiVersion: viaduct.ai/v1
 kind: ksops
 metadata:
@@ -236,7 +236,7 @@ files:
 ```
 
 #### kustomization.yaml
-```yaml
+```
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 generators:
