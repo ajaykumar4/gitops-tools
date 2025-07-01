@@ -149,6 +149,14 @@
     },
     {
       "matchPackageNames": ["kubernetes-sigs/kustomize"],
+      "extends": [":automergeMinor"]
+    },
+    {
+      "matchPackageNames": ["kubernetes/kubectl"],
+      "extends": [":automergeMinor"]
+    },
+    {
+      "matchPackageNames": ["kubernetes-sigs/kustomize"],
       "extractVersion": "^kustomize\\/v(?<version>\\d+\\.\\d+\\.\\d+)$"
     },
     {
