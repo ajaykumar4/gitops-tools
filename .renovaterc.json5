@@ -177,7 +177,7 @@
       "description": "Update tool versions in README.md",
       "fileMatch": ["(^|/)README\\.md$"],
       "matchStrings": [
-        "<!--\\s*# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s*-->.*v(?<currentValue>.+)\\b"
+        "<!--\\s*# renovate: datasource=(?<datasource>[^\\s]+) depName=(?<depName>[^\\s]+)\\s*-->.*v(?<currentValue>.+)"
       ],
       "datasourceTemplate": "{{datasource}}",
       "depNameTemplate": "{{depName}}",
