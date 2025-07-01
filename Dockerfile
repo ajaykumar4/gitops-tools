@@ -27,7 +27,7 @@ ARG SOPS_VERSION=v3.10.2
 ARG YQ_VERSION=v4.45.4
 # renovate: datasource=github-releases depName=moparisthebest/static-curl
 ARG CURL_VERSION=v8.11.0
-# renovate: datasource=github-releases depName=kubernetes/kubectl
+# renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.30.2
 # renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.41.2
