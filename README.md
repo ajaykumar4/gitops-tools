@@ -46,6 +46,8 @@ This image packages the following command-line tools. All binaries are located i
 | Tool         | Version  | Description                                                     |
 |--------------|----------|-----------------------------------------------------------------|
 | age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> v1.2.1   | A simple, modern, and secure file encryption tool.              |
+
+| argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> v1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
 | curl         | <!-- # renovate: datasource=github-releases depName=moparisthebest/static-curl --> v8.11.0  | A static build of the command-line tool for transferring data with URL syntax. |
 | helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> v1.1.2   | A declarative spec for deploying Helm charts.                   |
 | jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> v1.7.1   | A lightweight and flexible command-line JSON processor.         |
@@ -89,6 +91,55 @@ configs:
       secrets+age-import, secrets+age-import-kubernetes,
       secrets, secrets+literal,
       https
+```
+
+Configure `argocd-cm` ConfigMap to Register AVP-based CMP Plugins
+
+```
+configs:
+  cmp:
+    plugins:
+      avp-kustomize:
+        discover:
+          find:
+            command:
+              - find
+              - "."
+              - -name
+              - kustomization.yaml
+        generate:
+          command:
+            - sh
+            - "-c"
+            - "kustomize build . | argocd-vault-plugin generate -"
+      avp-helm:
+        discover:
+          find:
+            command:
+              - sh
+              - "-c"
+              - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+        generate:
+          # WARNING: This exposes the container to arbitrary code execution.
+          # Only use in trusted environments.
+          command:
+            - sh
+            - "-c"
+            - |
+              helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
+              argocd-vault-plugin generate -
+      avp:
+        discover:
+          find:
+            command:
+              - sh
+              - "-c"
+              - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
+        generate:
+          command:
+            - argocd-vault-plugin
+            - generate
+            - "."
 ```
 
 ### Create a Secret for Private Keys:
