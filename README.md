@@ -65,7 +65,7 @@ All binaries are installed in `/gitops-tools`.
 
 | Plugin      | Version  | Description                                                    |
 |-------------|----------|----------------------------------------------------------------|
-| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> v3.12.2  | A helm plugin for previewing helm upgrade as a diff.           |
+| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> v3.12.3  | A helm plugin for previewing helm upgrade as a diff.           |
 | helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> v1.4.0   | A helm plugin for installing charts from Git repositories.     |
 | helm-secrets| <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> v4.6.5   | A helm plugin for managing secrets with sops or other secret backends. |
 
