@@ -31,6 +31,8 @@ ARG KUBECTL_VERSION=v1.33.2
 ARG VALS_VERSION=0.41.2
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.3.3
+# renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
+ARG AVP_VERSION=1.18.1
   
 RUN mkdir -p /gitops-tools/helm-plugins
 
@@ -44,6 +46,7 @@ RUN \
     wget -qO "/gitops-tools/kubectl"   "https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/${GO_ARCH}/kubectl" && \
     wget -qO-                          "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv${KUSTOMIZE_VERSION}/kustomize_v${KUSTOMIZE_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /gitops-tools kustomize && \
     wget -qO-                          "https://github.com/helmfile/vals/releases/download/v${VALS_VERSION}/vals_${VALS_VERSION}_linux_${GO_ARCH}.tar.gz" | tar zxv -C /gitops-tools vals && \
+    wget -qO "/gitops-tools/argocd-vault-plugin" "https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v${AVP_VERSION}/argocd-vault-plugin_${AVP_VERSION}_linux_${GO_ARCH}" && \
     true
 
 RUN \
