@@ -98,8 +98,14 @@ Configure `argocd-cm` ConfigMap to Register AVP-based CMP Plugins
 ```
 configs:
   cmp:
+    create: true
     plugins:
       avp-kustomize:
+        allowConcurrency: true
+        lockRepo: false
+        init:
+          command: [sh]
+          args: [-c, 'echo "Initializing..."']
         discover:
           find:
             command:
@@ -111,35 +117,7 @@ configs:
           command:
             - sh
             - "-c"
-            - "kustomize build . | argocd-vault-plugin generate -"
-      avp-helm:
-        discover:
-          find:
-            command:
-              - sh
-              - "-c"
-              - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
-        generate:
-          # WARNING: This exposes the container to arbitrary code execution.
-          # Only use in trusted environments.
-          command:
-            - sh
-            - "-c"
-            - |
-              helm template $ARGOCD_APP_NAME -n $ARGOCD_APP_NAMESPACE ${ARGOCD_ENV_HELM_ARGS} . |
-              argocd-vault-plugin generate -
-      avp:
-        discover:
-          find:
-            command:
-              - sh
-              - "-c"
-              - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-        generate:
-          command:
-            - argocd-vault-plugin
-            - generate
-            - "."
+            - "kustomize build --enable-alpha-plugins --enable-exec . | argocd-vault-plugin generate -"
 ```
 
 ### Create a Secret for Private Keys:
@@ -217,6 +195,69 @@ repoServer:
       subPath: ksops
     - mountPath: /helm-secrets-private-keys/
       name: helm-secrets-private-keys
+  extraContainers:
+    # argocd-vault-plugin with Kustomize
+    - name: avp-kustomize
+      command: [/var/run/argocd/argocd-cmp-server]
+      image: quay.io/argoproj/argocd
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 999
+      env:
+        - name: HELM_PLUGINS
+          value: /custom-tools/helm-plugins/
+        - name: HELM_SECRETS_CURL_PATH
+          value: /custom-tools/curl
+        - name: HELM_SECRETS_SOPS_PATH
+          value: /custom-tools/sops
+        - name: HELM_SECRETS_VALS_PATH
+          value: /custom-tools/vals
+        - name: HELM_SECRETS_KUBECTL_PATH
+          value: /custom-tools/kubectl
+        - name: HELM_SECRETS_BACKEND
+          value: sops
+        # https://github.com/jkroepke/helm-secrets/wiki/Security-in-shared-environments
+        - name: HELM_SECRETS_VALUES_ALLOW_SYMLINKS
+          value: "false"
+        - name: HELM_SECRETS_VALUES_ALLOW_ABSOLUTE_PATH
+          value: "true"
+        - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
+          value: "false"
+        - name: HELM_SECRETS_WRAPPER_ENABLED
+          value: "true"
+        - name: HELM_SECRETS_DECRYPT_SECRETS_IN_TMP_DIR
+          value: "true"
+        - name: HELM_SECRETS_HELM_PATH
+          value: /usr/local/bin/helm
+        - name: SOPS_AGE_KEY_FILE # For age
+          value: /helm-secrets-private-keys/key.txt
+        - name: AVP_TYPE
+          value: kubernetessecret
+      volumeMounts:
+        - mountPath: /var/run/argocd
+          name: var-files
+        - mountPath: /home/argocd/cmp-server/plugins
+          name: plugins
+        - mountPath: /tmp
+          name: tmp
+        # Register plugins into sidecar
+        - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+          subPath: avp-kustomize.yaml
+          name: argocd-cmp-cm
+        - mountPath: /usr/local/sbin/helm
+          subPath: helm
+          name: custom-tools
+        - mountPath: /usr/local/bin/kustomize
+          name: custom-tools
+          subPath: kustomize
+        - mountPath: /usr/local/bin/ksops
+          name: custom-tools
+          subPath: ksops
+        - mountPath: /usr/local/bin/argocd-vault-plugin
+          name: custom-tools
+          subPath: argocd-vault-plugin
+        - mountPath: /helm-secrets-private-keys/
+          name: helm-secrets-private-keys
 ```
 
 ## Usage
