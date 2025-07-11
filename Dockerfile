@@ -16,7 +16,7 @@ ARG AGE_VERSION=v1.2.1
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-releases depName=helmfile/helmfile
-ARG HELMFILE_VERSION=1.1.2
+ARG HELMFILE_VERSION=1.1.3
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
 ARG KUSTOMIZE_VERSION=5.7.0
 # renovate: datasource=github-releases depName=getsops/sops
