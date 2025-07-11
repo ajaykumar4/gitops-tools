@@ -56,7 +56,7 @@ This image packages the following command-line tools. All binaries are located i
 | kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> v4.3.3 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
 | sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> v3.10.2  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
 | vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> v0.41.2   | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
-| yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> v4.45.4  | A command-line YAML, JSON, and XML processor.                   |
+| yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> v4.46.1  | A command-line YAML, JSON, and XML processor.                   |
 
 All binaries are installed in `/gitops-tools`.
 ---
