@@ -28,7 +28,7 @@ ARG CURL_VERSION=v8.11.0
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.33.2
 # renovate: datasource=github-releases depName=helmfile/vals
-ARG VALS_VERSION=0.41.2
+ARG VALS_VERSION=0.41.3
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.3.3
 # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
