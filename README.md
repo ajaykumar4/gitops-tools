@@ -45,18 +45,17 @@ This image packages the following command-line tools. All binaries are located i
 
 | Tool         | Version  | Description                                                     |
 |--------------|----------|-----------------------------------------------------------------|
-| age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> v1.2.1   | A simple, modern, and secure file encryption tool.              |
-
-| argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> v1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
-| curl         | <!-- # renovate: datasource=github-releases depName=moparisthebest/static-curl --> v8.11.0  | A static build of the command-line tool for transferring data with URL syntax. |
-| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> v1.1.3   | A declarative spec for deploying Helm charts.                   |
-| jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> v1.7.1   | A lightweight and flexible command-line JSON processor.         |
-| kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> v1.33.2  | The Kubernetes command-line tool.                               |
-| kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> v5.7.0   | Customization of Kubernetes YAML configurations.                |
-| kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> v4.3.3 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
-| sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> v3.10.2  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
-| vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> v0.41.2   | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
-| yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> v4.46.1  | A command-line YAML, JSON, and XML processor.                   |
+| age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> 1.2.1   | A simple, modern, and secure file encryption tool.              |
+| argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> 1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
+| curl         | <!-- # renovate: datasource=github-releases depName=moparisthebest/static-curl --> 8.11.0  | A static build of the command-line tool for transferring data with URL syntax. |
+| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.1.2   | A declarative spec for deploying Helm charts.                   |
+| jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> 1.7.1   | A lightweight and flexible command-line JSON processor.         |
+| kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.33.2  | The Kubernetes command-line tool.                               |
+| kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.7.0   | Customization of Kubernetes YAML configurations.                |
+| kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> 4.3.3 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
+| sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> 3.10.2  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
+| vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> 0.41.2  | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
+| yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> 4.45.4  | A command-line YAML, JSON, and XML processor.                   |
 
 All binaries are installed in `/gitops-tools`.
 ---
@@ -65,9 +64,9 @@ All binaries are installed in `/gitops-tools`.
 
 | Plugin      | Version  | Description                                                    |
 |-------------|----------|----------------------------------------------------------------|
-| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> v3.12.3  | A helm plugin for previewing helm upgrade as a diff.           |
-| helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> v1.4.0   | A helm plugin for installing charts from Git repositories.     |
-| helm-secrets| <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> v4.6.5   | A helm plugin for managing secrets with sops or other secret backends. |
+| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.12.2  | A helm plugin for previewing helm upgrade as a diff.           |
+| helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> 1.4.0   | A helm plugin for installing charts from Git repositories.     |
+| helm-secrets| <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.6.5   | A helm plugin for managing secrets with sops or other secret backends. |
 
 Helm is wrapped in a script that automatically uses `helm-secrets` for seamless decryption.
 
