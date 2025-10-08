@@ -12,6 +12,11 @@
   dependencyDashboard: true,
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
   schedule: ["every weekend"],
+  "dockerfile": {
+    "managerFilePatterns": [
+      "(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
+    ]
+  },
   "packageRules": [
     {
       "matchCategories": ["docker"],
