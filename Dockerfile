@@ -63,7 +63,7 @@ RUN \
 # renovate: datasource=github-releases depName=databus23/helm-diff
 ARG HELM_DIFF_VERSION=v3.14.1
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
-ARG HELM_GIT_VERSION=v1.4.1
+ARG HELM_GIT_VERSION=v1.5.1
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
 ARG HELM_SECRETS_VERSION=v4.7.4
 
