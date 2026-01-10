@@ -65,7 +65,7 @@ ARG HELM_DIFF_VERSION=v3.14.1
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.5.1
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v4.7.4
+ARG HELM_SECRETS_VERSION=v4.7.5
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
