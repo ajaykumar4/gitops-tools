@@ -134,7 +134,7 @@ Apply the following patch to your argocd-repo-server deployment. This sets up th
 repoServer:
   initContainers:
     - name: gitops-tools
-      image: ajaykumar4/gitops-tools:2025.11.0
+      image: ajaykumar4/gitops-tools:2026.1.0
       imagePullPolicy: Always
       command: [sh, -ec]
       args:
