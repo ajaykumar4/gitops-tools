@@ -23,8 +23,6 @@ ARG KUSTOMIZE_VERSION=5.8.0
 ARG SOPS_VERSION=v3.11.0
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.50.1
-# renovate: datasource=github-releases depName=moparisthebest/static-curl
-ARG CURL_VERSION=v8.17.0
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.35.0
 # renovate: datasource=github-releases depName=helmfile/vals
@@ -49,10 +47,7 @@ RUN \
     wget -qO "/gitops-tools/argocd-vault-plugin" "https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v${AVP_VERSION}/argocd-vault-plugin_${AVP_VERSION}_linux_${GO_ARCH}" && \
     true
 
-RUN \
-    GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/') && \
-    wget -qO "/gitops-tools/curl"      "https://github.com/moparisthebest/static-curl/releases/download/${CURL_VERSION}/curl-${GO_ARCH}" && \
-    true
+RUN apk add --no-cache curl
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
