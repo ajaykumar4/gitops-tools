@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=docker.io/library/alpine:3.23@sha256:865b95f46d98cf867a156fe4a135ad3fe50d2056aa3f25ed31662dff6da4eb62
+ARG BASE_IMAGE=docker.io/library/alpine:3.23@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
 
 FROM $BASE_IMAGE
   
@@ -22,7 +22,7 @@ ARG KUSTOMIZE_VERSION=5.8.0
 # renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.11.0
 # renovate: datasource=github-releases depName=mikefarah/yq
-ARG YQ_VERSION=v4.50.1
+ARG YQ_VERSION=v4.52.2
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.35.0
 # renovate: datasource=github-releases depName=helmfile/vals
@@ -56,7 +56,7 @@ RUN \
 
 # plugin versions
 # renovate: datasource=github-releases depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.14.1
+ARG HELM_DIFF_VERSION=v3.15.0
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.5.2
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets

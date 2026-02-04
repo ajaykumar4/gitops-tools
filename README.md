@@ -54,7 +54,7 @@ This image packages the following command-line tools. All binaries are located i
 | kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> 4.4.0 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
 | sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> 3.11.0  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
 | vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> 0.43.1  | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
-| yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> 4.50.1  | A command-line YAML, JSON, and XML processor.                   |
+| yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> 4.52.2  | A command-line YAML, JSON, and XML processor.                   |
 
 All binaries are installed in `/gitops-tools`.
 ---
@@ -63,7 +63,7 @@ All binaries are installed in `/gitops-tools`.
 
 | Plugin      | Version  | Description                                                    |
 |-------------|----------|----------------------------------------------------------------|
-| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.14.1  | A helm plugin for previewing helm upgrade as a diff.           |
+| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.15.0  | A helm plugin for previewing helm upgrade as a diff.           |
 | helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> 1.5.2   | A helm plugin for installing charts from Git repositories.     |
 | helm-secrets<br>helm-secrets-getter<br>helm-secrets-post-renderer| <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.5   | A helm plugin for managing secrets with sops or other secret backends. |
 
@@ -134,7 +134,7 @@ Apply the following patch to your argocd-repo-server deployment. This sets up th
 repoServer:
   initContainers:
     - name: gitops-tools
-      image: ajaykumar4/gitops-tools:2025.11.0
+      image: ajaykumar4/gitops-tools:2026.2.0
       imagePullPolicy: Always
       command: [sh, -ec]
       args:
