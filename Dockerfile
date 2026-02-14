@@ -22,7 +22,7 @@ ARG KUSTOMIZE_VERSION=5.8.1
 # renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.11.0
 # renovate: datasource=github-releases depName=mikefarah/yq
-ARG YQ_VERSION=v4.52.2
+ARG YQ_VERSION=v4.52.4
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.35.1
 # renovate: datasource=github-releases depName=helmfile/vals
