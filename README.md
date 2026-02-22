@@ -47,7 +47,7 @@ This image packages the following command-line tools. All binaries are located i
 |--------------|----------|-----------------------------------------------------------------|
 | age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> 1.3.1   | A simple, modern, and secure file encryption tool.              |
 | argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> 1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
-| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.3.0   | A declarative spec for deploying Helm charts.                   |
+| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.3.1   | A declarative spec for deploying Helm charts.                   |
 | jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> 1.7.1   | A lightweight and flexible command-line JSON processor.         |
 | kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.35.1  | The Kubernetes command-line tool.                               |
 | kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.8.1   | Customization of Kubernetes YAML configurations.                |
