@@ -49,7 +49,7 @@ This image packages the following command-line tools. All binaries are located i
 | argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> 1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
 | helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.3.2   | A declarative spec for deploying Helm charts.                   |
 | jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> 1.7.1   | A lightweight and flexible command-line JSON processor.         |
-| kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.35.1  | The Kubernetes command-line tool.                               |
+| kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.35.2  | The Kubernetes command-line tool.                               |
 | kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.8.1   | Customization of Kubernetes YAML configurations.                |
 | kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> 4.4.0 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
 | sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> 3.12.1  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
