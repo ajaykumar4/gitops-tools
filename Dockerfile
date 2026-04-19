@@ -28,7 +28,7 @@ ARG KUBECTL_VERSION=v1.35.3
 # renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.43.9
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
-ARG KSOPS_VERSION=4.4.0
+ARG KSOPS_VERSION=4.5.1
 # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
 ARG AVP_VERSION=1.18.1
   
