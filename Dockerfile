@@ -24,7 +24,7 @@ ARG SOPS_VERSION=v3.12.2
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.52.5
 # renovate: datasource=github-tags depName=kubernetes/kubectl
-ARG KUBECTL_VERSION=v1.35.3
+ARG KUBECTL_VERSION=v1.35.4
 # renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.43.9
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
