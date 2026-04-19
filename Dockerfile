@@ -56,7 +56,7 @@ RUN \
 
 # plugin versions
 # renovate: datasource=github-releases depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.15.5
+ARG HELM_DIFF_VERSION=v3.15.6
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.5.2
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
