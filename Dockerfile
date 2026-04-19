@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=docker.io/library/alpine:3.23@sha256:25109184c71bdad752c8312a8623239686a9a2071e8825f20acb8f2198c3f659
+ARG BASE_IMAGE=docker.io/library/alpine:3.23@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11
 
 FROM $BASE_IMAGE
   
@@ -22,13 +22,13 @@ ARG KUSTOMIZE_VERSION=5.8.1
 # renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.12.2
 # renovate: datasource=github-releases depName=mikefarah/yq
-ARG YQ_VERSION=v4.52.5
+ARG YQ_VERSION=v4.53.2
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.35.4
 # renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.43.9
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
-ARG KSOPS_VERSION=4.4.0
+ARG KSOPS_VERSION=4.5.1
 # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
 ARG AVP_VERSION=1.18.1
   
