@@ -69,7 +69,7 @@ RUN \
     wget -qO-                          "https://github.com/jkroepke/helm-secrets/releases/download/${HELM_SECRETS_VERSION}/secrets-post-renderer-${HELM_SECRETS_VERSION#v}.tgz" | tar -C /gitops-tools/helm-plugins -xzf- && \
     wget -qO-                          "https://github.com/databus23/helm-diff/releases/download/${HELM_DIFF_VERSION}/helm-diff-linux-${GO_ARCH}.tgz" | tar -C /gitops-tools/helm-plugins -xzf- && \
     wget -qO-                          "https://github.com/aslafy-z/helm-git/archive/refs/tags/${HELM_GIT_VERSION}.tar.gz" | tar -C /gitops-tools/helm-plugins -xzf- && \
-    cp /gitops-tools/helm-plugins/secrets/scripts/commands/helm.sh /gitops-tools/helm && \
+    cp /gitops-tools/helm-plugins/secrets/scripts/wrapper/helm.sh /gitops-tools/helm && \
     chmod +x /gitops-tools/* && \
     true
 
