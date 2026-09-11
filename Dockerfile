@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=docker.io/library/alpine:3.23@sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11
+ARG BASE_IMAGE=docker.io/library/alpine:3.24@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
 
 FROM $BASE_IMAGE
   
@@ -12,21 +12,21 @@ RUN echo "I am running on final $BUILDPLATFORM, building for $TARGETPLATFORM"
   
 # binary versions
 # renovate: datasource=github-releases depName=FiloSottile/age
-ARG AGE_VERSION=v1.3.1
+ARG AGE_VERSION=v1.3.2
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-releases depName=helmfile/helmfile
-ARG HELMFILE_VERSION=1.5.0
+ARG HELMFILE_VERSION=1.5.5
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
 ARG KUSTOMIZE_VERSION=5.8.1
 # renovate: datasource=github-releases depName=getsops/sops
-ARG SOPS_VERSION=v3.13.0
+ARG SOPS_VERSION=v3.13.3
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.53.2
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.37.0
 # renovate: datasource=github-releases depName=helmfile/vals
-ARG VALS_VERSION=0.44.0
+ARG VALS_VERSION=0.44.5
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.5.1
 # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
