@@ -65,9 +65,9 @@ All binaries are installed in `/gitops-tools`.
 |-------------|----------|----------------------------------------------------------------|
 | helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.15.13 | A helm plugin for previewing helm upgrade as a diff.           |
 | helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> 1.5.2   | A helm plugin for installing charts from Git repositories.     |
-| secrets     | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.4   | Helm 4 plugin for managing secrets with sops or other secret backends. |
-| secrets-getter | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.4 | Helm 4 plugin for retrieving and decrypting secret values. |
-| secrets-post-renderer | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.4 | Helm 4 plugin for decrypting secrets during post-rendering. |
+| secrets     | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.7   | Helm 4 plugin for managing secrets with sops or other secret backends. |
+| secrets-getter | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.7 | Helm 4 plugin for retrieving and decrypting secret values. |
+| secrets-post-renderer | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.7 | Helm 4 plugin for decrypting secrets during post-rendering. |
 
 Helm is wrapped in a script that automatically uses `helm-secrets` for seamless decryption.
 
