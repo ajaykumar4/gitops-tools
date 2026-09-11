@@ -45,15 +45,15 @@ This image packages the following command-line tools. All binaries are located i
 
 | Tool         | Version  | Description                                                     |
 |--------------|----------|-----------------------------------------------------------------|
-| age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> 1.3.1   | A simple, modern, and secure file encryption tool.              |
+| age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> 1.3.2   | A simple, modern, and secure file encryption tool.              |
 | argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> 1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
-| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.5.0   | A declarative spec for deploying Helm charts.                   |
+| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.7.4   | A declarative spec for deploying Helm charts.                   |
 | jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> 1.7.1   | A lightweight and flexible command-line JSON processor.         |
-| kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.36.0  | The Kubernetes command-line tool.                               |
+| kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.37.0  | The Kubernetes command-line tool.                               |
 | kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.8.1   | Customization of Kubernetes YAML configurations.                |
 | kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> 4.5.1 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
 | sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> 3.13.0  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
-| vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> 0.44.0  | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
+| vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> 0.46.1  | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
 | yq           | <!-- # renovate: datasource=github-releases depName=mikefarah/yq --> 4.53.6  | A command-line YAML, JSON, and XML processor.                   |
 
 All binaries are installed in `/gitops-tools`.
@@ -65,9 +65,9 @@ All binaries are installed in `/gitops-tools`.
 |-------------|----------|----------------------------------------------------------------|
 | helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.15.13 | A helm plugin for previewing helm upgrade as a diff.           |
 | helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> 1.5.2   | A helm plugin for installing charts from Git repositories.     |
-| secrets     | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.4   | Helm 4 plugin for managing secrets with sops or other secret backends. |
-| secrets-getter | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.4 | Helm 4 plugin for retrieving and decrypting secret values. |
-| secrets-post-renderer | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.4 | Helm 4 plugin for decrypting secrets during post-rendering. |
+| secrets     | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.7   | Helm 4 plugin for managing secrets with sops or other secret backends. |
+| secrets-getter | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.7 | Helm 4 plugin for retrieving and decrypting secret values. |
+| secrets-post-renderer | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.7 | Helm 4 plugin for decrypting secrets during post-rendering. |
 
 Helm is wrapped in a script that automatically uses `helm-secrets` for seamless decryption.
 
