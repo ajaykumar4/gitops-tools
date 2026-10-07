@@ -47,7 +47,7 @@ This image packages the following command-line tools. All binaries are located i
 |--------------|----------|-----------------------------------------------------------------|
 | age          | <!-- # renovate: datasource=github-releases depName=FiloSottile/age --> 1.3.2   | A simple, modern, and secure file encryption tool.              |
 | argocd-vault-plugin | <!-- # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin --> 1.18.1 | ArgoCD plugin to inject secrets from Vault, AWS, Bitwarden, etc., into manifests. |
-| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.8.0   | A declarative spec for deploying Helm charts.                   |
+| helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.8.1   | A declarative spec for deploying Helm charts.                   |
 | jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> 1.7.1   | A lightweight and flexible command-line JSON processor.         |
 | kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.37.1  | The Kubernetes command-line tool.                               |                              |
 | kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.8.2   | Customization of Kubernetes YAML configurations.                |
@@ -63,7 +63,7 @@ All binaries are installed in `/gitops-tools`.
 
 | Plugin      | Version  | Description                                                    |
 |-------------|----------|----------------------------------------------------------------|
-| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.15.13 | A helm plugin for previewing helm upgrade as a diff.           |
+| helm-diff   | <!-- # renovate: datasource=github-releases depName=databus23/helm-diff --> 3.15.15 | A helm plugin for previewing helm upgrade as a diff.           |
 | helm-git    | <!-- # renovate: datasource=github-releases depName=aslafy-z/helm-git --> 1.5.2   | A helm plugin for installing charts from Git repositories.     |
 | secrets     | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.9   | Helm 4 plugin for managing secrets with sops or other secret backends. |
 | secrets-getter | <!-- # renovate: datasource=github-releases depName=jkroepke/helm-secrets --> 4.7.9 | Helm 4 plugin for retrieving and decrypting secret values. |
