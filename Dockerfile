@@ -18,13 +18,13 @@ ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-releases depName=helmfile/helmfile
 ARG HELMFILE_VERSION=1.8.0
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
-ARG KUSTOMIZE_VERSION=5.8.1
+ARG KUSTOMIZE_VERSION=5.8.2
 # renovate: datasource=github-releases depName=getsops/sops
 ARG SOPS_VERSION=v3.13.3
 # renovate: datasource=github-releases depName=mikefarah/yq
 ARG YQ_VERSION=v4.54.1
 # renovate: datasource=github-tags depName=kubernetes/kubectl
-ARG KUBECTL_VERSION=v1.37.0
+ARG KUBECTL_VERSION=v1.37.1
 # renovate: datasource=github-releases depName=helmfile/vals
 ARG VALS_VERSION=0.46.1
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
