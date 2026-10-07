@@ -16,7 +16,7 @@ ARG AGE_VERSION=v1.3.2
 # renovate: datasource=github-releases depName=jqlang/jq
 ARG JQ_VERSION=1.7.1
 # renovate: datasource=github-releases depName=helmfile/helmfile
-ARG HELMFILE_VERSION=1.8.0
+ARG HELMFILE_VERSION=1.8.1
 # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize
 ARG KUSTOMIZE_VERSION=5.8.2
 # renovate: datasource=github-releases depName=getsops/sops
@@ -56,11 +56,11 @@ RUN \
 
 # plugin versions
 # renovate: datasource=github-releases depName=databus23/helm-diff
-ARG HELM_DIFF_VERSION=v3.15.13
+ARG HELM_DIFF_VERSION=v3.15.15
 # renovate: datasource=github-releases depName=aslafy-z/helm-git
 ARG HELM_GIT_VERSION=v1.5.2
 # renovate: datasource=github-releases depName=jkroepke/helm-secrets
-ARG HELM_SECRETS_VERSION=v4.7.7
+ARG HELM_SECRETS_VERSION=v4.7.9
 
 RUN \
     GO_ARCH=$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/') && \
