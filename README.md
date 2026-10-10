@@ -50,7 +50,7 @@ This image packages the following command-line tools. All binaries are located i
 | helmfile     | <!-- # renovate: datasource=github-releases depName=helmfile/helmfile --> 1.8.1   | A declarative spec for deploying Helm charts.                   |
 | jq           | <!-- # renovate: datasource=github-releases depName=jqlang/jq --> 1.7.1   | A lightweight and flexible command-line JSON processor.         |
 | kubectl      | <!-- # renovate: datasource=github-tags depName=kubernetes/kubectl --> 1.37.1  | The Kubernetes command-line tool.                               |                              |
-| kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.8.2   | Customization of Kubernetes YAML configurations.                |
+| kustomize    | <!-- # renovate: datasource=github-releases depName=kubernetes-sigs/kustomize --> 5.8.3   | Customization of Kubernetes YAML configurations.                |
 | kustomize-sops (ksops) | <!-- # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops --> 4.5.1 | A kustomize plugin for decrypting SOPS-encrypted resources.   |
 | sops         | <!-- # renovate: datasource=github-releases depName=getsops/sops --> 3.13.3  | A tool for managing secrets, which works with AWS KMS, GCP KMS, etc. |
 | vals         | <!-- # renovate: datasource=github-releases depName=helmfile/vals --> 0.47.0  | A tool for fetching and templating values from various sources (Vault, SSM, etc.). |
