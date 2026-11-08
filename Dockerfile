@@ -26,7 +26,7 @@ ARG YQ_VERSION=v4.54.2
 # renovate: datasource=github-tags depName=kubernetes/kubectl
 ARG KUBECTL_VERSION=v1.37.2
 # renovate: datasource=github-releases depName=helmfile/vals
-ARG VALS_VERSION=0.50.0
+ARG VALS_VERSION=0.51.0
 # renovate: datasource=github-releases depName=viaduct-ai/kustomize-sops
 ARG KSOPS_VERSION=4.5.1
 # renovate: datasource=github-releases depName=argoproj-labs/argocd-vault-plugin
